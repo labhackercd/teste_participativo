@@ -4,6 +4,7 @@ class Opinion
 	
 	field :body, type: String
 	belongs_to :discussion
+  belongs_to :user
 	index({ starred: 1 })
 
 	has_many :related_opinions, :class_name => 'Opinion',  :inverse_of => :parent_opinion

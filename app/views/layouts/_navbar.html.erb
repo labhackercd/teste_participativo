@@ -1,0 +1,18 @@
+<nav class="grey darken-1">
+  <div class="nav-wrapper">
+    <a class="brand-logo" href="<%= root_path %>">
+      <%= image_tag("mapa.png") %>
+      Mapa Participativo
+    </a>
+
+
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+      <li><a class="tooltipped" data-delay="50" data-method="delete" data-position="bottom" data-tooltip="<%= "Sair" %>" href="<%= destroy_user_session_path %>">
+        <i class="mdi-action-exit-to-app"></i>
+      </a></li>
+      <% end %>
+      <!-- Dropdown Trigger -->
+    </ul>
+  </div>
+</nav>

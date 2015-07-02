@@ -7,6 +7,12 @@ gem 'mongoid', '4.0.1'
 gem 'bson_ext'
 gem 'mongoid-slug'
 
+
+# Devise
+gem 'devise'
+
+
+# Front-end Assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
