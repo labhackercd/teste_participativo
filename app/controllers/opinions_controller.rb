@@ -14,13 +14,17 @@ class OpinionsController < ApplicationController
   # POST /opinions
   def create
     @discussion = Discussion.find(opinion_params[:discussion_id])
-    @opinion = Opinion.new(:body => opinion_params[:body])
+    @opinion = Opinion.new(:body => opinion_params[:body], :parent_position => opinion_params[:position] )
 
-    @related_opinion = @discussion.opinions.find(params[:opinion]['related_opinion_id'])
 
-    @opinion.opinions_agreeed << @related_opinion if params[:opinion]['position'] == "pro"
+
+    @parent_opinion = Opinion.find(params[:opinion]['related_opinion_id'])
+
 
     @discussion.opinions << @opinion
+
+    @parent_opinion.related_opinions << @opinion
+
     if @opinion.save
 
       redirect_to @discussion

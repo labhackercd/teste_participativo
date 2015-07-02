@@ -3,8 +3,10 @@ class Opinion
   	include Mongoid::Timestamps
 	
 	field :body, type: String
-	embedded_in :discussion
+	belongs_to :discussion
 	index({ starred: 1 })
 
-	embeds_many :opinions_agreeed, :class_name => 'Opinion'
+	has_many :related_opinions, :class_name => 'Opinion',  :inverse_of => :parent_opinion
+  belongs_to :parent_opinion, :class_name => 'Opinion', :inverse_of => :related_opinions
+  field :parent_position
 end

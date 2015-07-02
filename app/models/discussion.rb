@@ -7,6 +7,6 @@ class Discussion
 
 	field :title
 	slug  :title, :history => true
-	embeds_many :opinions
+	has_many :opinions
 	index({ starred: 1 })
 end
