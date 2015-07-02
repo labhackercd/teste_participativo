@@ -1,0 +1,11 @@
+<%= simple_form_for(@opinion) do |f| %>
+
+    <div class="form-inputs">
+      <%= f.text_area :body%>
+      <%= f.input :discussion_id, :as => :hidden, :input_html => { :value => params[:discussion_id]} %>
+      <%= f.input :related_opinion_id, :as => :hidden, :input_html => { :value => params[:related_opinion_id]} %>
+      <%= f.input :position, :as => :hidden, :input_html => { :value => params[:position]} %>
+      <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id]} %>
+      </div>
+      <%= f.button :submit%>
+<% end %>

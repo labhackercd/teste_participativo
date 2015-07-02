@@ -1,25 +1,22 @@
-    <div class="row">
-      <div class="col s12 m12">
-        <div class="card-panel grey">
-          <span class="white-text">   
 
-          	 <%= simple_form_for(@opinion) do |f| %>
+ <% if params[:position] == "pro" %>
+        <div id ="opinion_body" class="card-panel light-green lighten-3">
+        <span class="black-text">
 
-			  <div class="form-inputs">
-			  <%= f.input :body%>
-			  <%= f.input :discussion_id, :as => :hidden, :input_html => { :value => params[:discussion_id]} %>
-              <%= f.input :related_opinion_id, :as => :hidden, :input_html => { :value => params[:related_opinion_id]} %>
-              <%= f.input :position, :as => :hidden, :input_html => { :value => params[:position]} %>
-              <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id]} %>
 
-              <div class="form-actions">
-              <%= f.button :submit %>
- 			 </div>
-			<% end %>
-          </span>
-          </div>
-        </div>
-      </div>
+    <% elsif params[:position] ==  "neutral" %>
+         <div id ="opinion_body" class="card-panel amber lighten-3">
+         <span class="black-text">
+
+
+    <% elsif "against" %>
+         <div id ="opinion_body" class="card-panel red lighten-3">
+         <span class="black-text">
+
+    <% end %>
+
+            <%= render partial: "opinions/form", opinion: @opinion %>
+        </span>
     </div>
 
 

@@ -3,39 +3,20 @@
   <div class="container">
     <br><br>
     <h1 class="header center orange-text">Cadastre-se</h1>
-    <div class="row center">
-
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :email, required: false, autofocus: true %>
-            <%= f.input :password, required: false %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Log in" %>
-          </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
-    </div>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :name, required: true, autofocus: true %>
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-          <%= f.input :password_confirmation, required: true %>
+          <%= f.input :name, label: I18n.t("user.name"), required: true, autofocus: true %>
+          <%= f.input :email,  label: I18n.t("user.email"), required: true, autofocus: true %>
+          <%= f.input :password, label: I18n.t("user.password"), required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
+          <%= f.input :password_confirmation, label: I18n.t("user.confirm_password"), required: true %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, I18n.t("user.sign_up"), class: "btn-large light-blue waves-light" %>
         </div>
     <% end %>
     <br><br>
-
-  </div>
 </div>
-
-
