@@ -1,11 +1,23 @@
+<% if params[:position] == "pro" %>
+<h4><%= I18n.t("discussion.opinion_agreement")%></h4>
+<% elsif params[:position] == "against" %>
+<h4><%= I18n.t("discussion.opinion_disagreement")%></h4>
+<% elsif params[:position] == "proposal" %>
+<h4><%= I18n.t("discussion.opinion_proposal")%></h4>
+<% end%>
+
 <%= simple_form_for(@opinion) do |f| %>
 
     <div class="form-inputs">
-      <%= f.text_area :body%>
+      <%= f.text_area :body, :required => true%>
       <%= f.input :discussion_id, :as => :hidden, :input_html => { :value => params[:discussion_id]} %>
       <%= f.input :related_opinion_id, :as => :hidden, :input_html => { :value => params[:related_opinion_id]} %>
       <%= f.input :position, :as => :hidden, :input_html => { :value => params[:position]} %>
       <%= f.input :user_id, :as => :hidden, :input_html => { :value => params[:user_id]} %>
       </div>
-      <%= f.button :submit%>
+
+    <div class="form-actions">
+      <%= button_tag(type: 'submit', class: "btn-large waves-effect waves-light blue darken-2") do %>
+          <i class="fa fa-reply"></i> <%= I18n.t("discussion.opinion") %>
+      <% end %>
 <% end %>

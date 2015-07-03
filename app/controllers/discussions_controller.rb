@@ -1,12 +1,8 @@
 class DiscussionsController < ApplicationController
-  before_filter :authenticate_user!, except: [:land]
+  before_filter :authenticate_user!
   before_action :set_discussion, only: [:show, :create]
 
 
-
-  def land
-
-  end
 
   def index
     @discussion = Discussion.all

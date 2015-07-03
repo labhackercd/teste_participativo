@@ -200,10 +200,21 @@ pt-BR:
       short: ! '%d de %B, %H:%M'
     pm: ''
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  discussion:
+    agreement: "Concordo"
+    disagreement: "Discordo"
+    proposal: "Proponha"
+    opinion: "Responder!"
+    opinion_agreement: "Diga o porquê da concordância"
+    opinion_disagreement: "Diga o porquê da discordância"
+    opinion_proposal: "Diga a sua proposta"
+
   user:
     name: "Nome"
     email: "Email"
     username: "Nome de Usuário"
     password: "Senha"
     confirm_password: "Confirme a senha"
-    sign_up: "Cadastre-se"
+    enter: "Entrar"
+    register: "Cadastrar"
+    already_registered: "Já tem Cadastro?"

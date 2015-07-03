@@ -1,0 +1,32 @@
+ <div class="row">
+      <div class="col s12">
+        <div class="card grey lighten-2">
+          <div class="card-content black-text flow-text">
+            <a name="<%=opinion.id%>"></a>
+            <span class="card-title"><%= opinion.user.name %></span>
+
+
+            <div class="section">
+              <h5><%= opinion.body %></h5>
+              <div class="divider"></div>
+             <% if opinion.parent_position == "pro" %>
+                  <h6 class="green-text text-ligthen2">Em concordância com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+
+
+             <% elsif opinion.parent_position == "against" %>
+                  <h6 class="red-text text-ligthen2">Em discordância com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+
+              <% elsif opinion.parent_position == "proposal" %>
+                  <h6 class="orange-text text-darken2">Em proposição com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+            <%end%>
+
+            </div>
+
+          </div>
+
+            <%= render "opinions/buttons", opinion: opinion%>
+
+
+        </div>
+      </div>
+    </div>

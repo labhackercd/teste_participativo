@@ -1,32 +1,4 @@
 <%@discussion.opinions.each do |opinion|%>
-    <div class="row">
-      <div class="col s12">
-        <div class="card grey lighten-2">
-          <div class="card-content black-text flow-text">
-            <span class="card-title"><%= opinion.user.name %></span>
-            <span class="card-body"><p><%= opinion.body%></p></span>
 
-          </div>
-          <div class="card-action">
-
-            <%= link_to new_opinion_path(:params => {position: "pro", discussion_id: @discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-large waves-effect waves-light green' do %>
-                <%= icon('thumbs-up', 'Concordo', class: 'strong')%>
-            <% end %>
-
-            <%= link_to new_opinion_path(:params => {position: "against", discussion_id: @discussion.id, related_opinion_id: opinion.id}) , remote: true, class: 'btn-large waves-effect waves-light red' do %>
-                <%= icon('thumbs-down', 'Discordo', class: 'strong')%>
-
-                <%= link_to new_opinion_path(:params => {position: "neutral", discussion_id: @discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-large waves-effect waves-light orange' do %>
-                    <%= icon('lightbulb-o', 'Proponho', class: 'strong')%>
-                <% end %>
-
-
-            <% end %>
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render "opinions/opinion", opinion: opinion %>
 <%end%>

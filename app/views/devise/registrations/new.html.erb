@@ -1,18 +1,27 @@
-<h2>Sign up</h2>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Cadastre-se</h1>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :name, required: true, autofocus: true %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-    <%= f.input :password_confirmation, required: true %>
+        <div class="form-inputs">
+          <%= f.input :name, label: I18n.t("user.name"), required: true, autofocus: true %>
+          <%= f.input :email,  label: I18n.t("user.email"), required: true, autofocus: true %>
+          <%= f.input :password, label: I18n.t("user.password"), required: true%>
+          <%= f.input :password_confirmation, label: I18n.t("user.confirm_password"), required: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= button_tag(type: 'submit', class: "btn-large waves-effect waves-light green darken-2") do %>
+              <i class="fa fa-user-plus"></i> <%= I18n.t("user.register") %>
+          <% end %>
+
+          <%= link_to new_user_session_path, class: 'btn-large waves-effect waves-light blue' do %>
+              <%= icon('arrow-right', I18n.t("user.already_registered") , class: 'strong')%>
+           <% end %>
+
+        </div>
+    <% end %>
+    <br><br>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

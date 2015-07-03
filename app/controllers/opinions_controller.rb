@@ -26,9 +26,11 @@ class OpinionsController < ApplicationController
     @parent_opinion.related_opinions << @opinion
 
     if @opinion.save
-      redirect_to @discussion, :notice => 'oi'
+      redirect_to @discussion
+    else
 
     end
+
   end
 
   private

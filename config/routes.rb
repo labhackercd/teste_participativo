@@ -3,5 +3,13 @@ Rails.application.routes.draw do
 
   resources :opinions
   resources :discussions
-  root 'discussions#land'
+
+  devise_scope :user do
+    authenticated :user do
+      root 'discussions#index', as: :authenticated_root
+    end
+    unauthenticated do
+      root 'users/registrations#new', as: :unauthenticated_root
+    end
+  end
 end

@@ -1,14 +1,25 @@
-<h2>Log in</h2>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Login</h1>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email, label: I18n.t("user.email"), required: true, autofocus: true %>
+          <%= f.input :password,  label: I18n.t("user.password"), required: true%>
+        </div>
+
+
+        <div class="form-actions">
+          <%= button_tag(type: 'submit', class: "btn-large waves-effect waves-light green darken-2") do %>
+              <i class="fa fa-arrow-right"></i> <%= I18n.t("user.enter") %>
+          <% end %>
+
+
+        </div>
+    <% end %>
+    <br><br>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
