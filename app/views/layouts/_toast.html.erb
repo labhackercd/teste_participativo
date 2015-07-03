@@ -1,0 +1,3 @@
+<% if flash[:notice] -%>
+    <%= javascript_tag "Materialize.toast('#{flash[:notice]}', 4000)" %>
+<% end %>

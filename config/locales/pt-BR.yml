@@ -205,6 +205,7 @@ pt-BR:
     disagreement: "Discordo"
     proposal: "Proponha"
     opinion: "Responder!"
+    opinion_blank: "A sua opinão não pôde ser salva, pois o conteúdo é obrigatório!"
     opinion_agreement: "Diga o porquê da concordância"
     opinion_disagreement: "Diga o porquê da discordância"
     opinion_proposal: "Diga a sua proposta"

@@ -25,12 +25,12 @@ class OpinionsController < ApplicationController
 
     @parent_opinion.related_opinions << @opinion
 
+
     if @opinion.save
       redirect_to @discussion
     else
-
-    end
-
+      redirect_to @discussion, notice: I18n.t("discussion.opinion_blank")
+   end
   end
 
   private
