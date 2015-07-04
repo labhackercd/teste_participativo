@@ -1,3 +1,19 @@
 <% if flash[:notice] -%>
     <%= javascript_tag "Materialize.toast('#{flash[:notice]}', 4000)" %>
 <% end %>
+
+<% if flash[:error] -%>
+    <%= javascript_tag "Materialize.toast('#{flash[:error]}', 4000)" %>
+<% end %>
+
+<% if flash[:success] -%>
+    <%= javascript_tag "Materialize.toast('#{flash[:success]}', 4000)" %>
+<% end %>
+
+<% if flash[:info] -%>
+    <%= javascript_tag "Materialize.toast('#{flash[:info]}', 4000)" %>
+<% end %>
+
+<% if flash[:alert] -%>
+    <%= javascript_tag "Materialize.toast('#{flash[:alert]}', 4000)" %>
+<% end %>

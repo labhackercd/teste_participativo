@@ -1,18 +1,35 @@
 <nav class="grey darken-1">
   <div class="nav-wrapper">
-    <a class="brand-logo" href="">
+    <a class="brand-logo center" href="">
       <%= image_tag("mapa.png") %>
       Teste Participativo
     </a>
 
+    <a href="" data-activates="mobile" class="button-collapse"><i class="mdi-action-list"></i></a>
 
+    <% if user_signed_in? %>
+        <ul class="left hide-on-med-and-down">
+        <li><a class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="<%= I18n.t("discussion.discussion_list") %>" href="<%= discussions_path %>">
+          <i class="mdi-navigation-arrow-back"></i></a></li>
+        </ul>
+    <% end %>
     <ul class="right hide-on-med-and-down">
       <% if user_signed_in? %>
-      <li><a class="tooltipped" data-delay="50" data-method="delete" data-position="bottom" data-tooltip="<%= "Sair" %>" href="<%= destroy_user_session_path %>">
+      <li><a class="tooltipped" data-delay="50" data-method="delete" data-position="bottom" data-tooltip="<%= I18n.t("devise.sessions.sign_out") %>" href="<%= destroy_user_session_path %>">
         <i class="mdi-action-exit-to-app"></i>
       </a></li>
       <% end %>
-      <!-- Dropdown Trigger -->
     </ul>
+
+    <ul class="side-nav" id="mobile">
+      <% if user_signed_in? %>
+          <li><a class="tooltipped" data-delay="50" data-position="bottom" data-tooltip="<%= I18n.t("discussion.discussion_list") %>" href="<%= discussions_path %>">
+            <i class="mdi-navigation-arrow-back">Voltar</i></a></li>
+          <li><a class="tooltipped" data-delay="50" data-method="delete" data-position="bottom" data-tooltip="<%= I18n.t("devise.sessions.sign_out") %>" href="<%= destroy_user_session_path %>">
+            <i class="mdi-action-exit-to-app">Sair</i>
+          </a></li>
+      <% end %>
+    </ul>
+
   </div>
 </nav>

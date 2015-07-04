@@ -27,7 +27,12 @@ class OpinionsController < ApplicationController
 
 
     if @opinion.save
-      redirect_to @discussion
+
+      if @opinion.parent_position == "proposal"
+        redirect_to @discussion, notice: I18n.t("discussion.proposal_created")
+      else
+        redirect_to @discussion, notice: I18n.t("discussion.opinion_created")
+      end
     else
       redirect_to @discussion, notice: I18n.t("discussion.opinion_blank")
    end

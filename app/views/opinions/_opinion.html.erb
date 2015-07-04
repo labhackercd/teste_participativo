@@ -25,18 +25,25 @@
 
              <% if opinion.parent_position == "pro" %>
                   <div class="divider"></div>
-                  <h6 class="green-text text-ligthen2">Em concordância com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+                  <h6 class="green-text text-ligthen2">Em concordância com <%= link_to "esta opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
 
 
              <% elsif opinion.parent_position == "against" %>
                   <div class="divider"></div>
-                  <h6 class="red-text text-ligthen2">Em discordância com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+                  <h6 class="red-text text-ligthen2">Em discordância com <%= link_to "esta opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
 
               <% elsif opinion.parent_position == "proposal" %>
                   <div class="divider"></div>
-                  <h6 class="orange-text text-darken2">Em proposição com a <%= link_to "opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
+                  <h6 class="orange-text text-darken2"> Proposição com base <%= link_to "nesta opinião", "##{opinion.parent_opinion.id}" %> de <%= opinion.parent_opinion.user.name%></h6>
             <%end%>
 
+
+            </div>
+
+            <div class="section">
+              <a class="btn green lighten-2"><i class="fa fa-thumbs-up"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "pro").count %> </i></a>
+              <a class="btn red lighten-2"><i class="fa fa-thumbs-down"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "against").count %> </i></a>
+              <a class="btn orange lighten-2"><i class="fa fa-lightbulb-o"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "proposal").count %> </i></a>
             </div>
 
           </div>

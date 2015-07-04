@@ -200,12 +200,18 @@ pt-BR:
       short: ! '%d de %B, %H:%M'
     pm: ''
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+
+  app:
+    title: "Teste Participativo"
   discussion:
     agreement: "Concordo"
     disagreement: "Discordo"
     proposal: "Proponha"
+    discussion_list: "Voltar"
     opinion: "Responder!"
     opinion_blank: "A sua opinão não pôde ser salva, pois o conteúdo é obrigatório!"
+    opinion_created: "Opinião criada com sucesso"
+    proposal_created: "Proposta criada com sucesso"
     opinion_agreement: "Diga o porquê da concordância"
     opinion_disagreement: "Diga o porquê da discordância"
     opinion_proposal: "Diga a sua proposta"

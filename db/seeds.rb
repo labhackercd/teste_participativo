@@ -13,5 +13,5 @@ discussionM.opinions << opinion
 discussionA = Discussion.create(:title => "Legalização do Aborto")
 
 
-opinion = Opinion.new(:body => "Eu sou a favor da Legalização do Aborto", :user_id => user.id)
+opinion = Opinion.new(:body => "A livre escolha pelo aborto deve ser legalizada já!", :user_id => user.id)
 discussionA.opinions << opinion
