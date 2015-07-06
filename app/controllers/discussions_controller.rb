@@ -9,6 +9,7 @@ class DiscussionsController < ApplicationController
   end
   # GET /discussions/1
   def show
+    @opinions = @discussion.opinions
   end
 
   def new
