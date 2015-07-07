@@ -25,3 +25,17 @@ textarea {
     cursor: default;
   }
 }
+
+$color_apple_approx: black;
+
+::-webkit-input-placeholder {
+  color: $color_apple_approx;
+}
+​ {
+}
+input:-moz-placeholder {
+  color: $color_apple_approx;
+}
+textarea:-moz-placeholder {
+  color: $color_apple_approx;
+}

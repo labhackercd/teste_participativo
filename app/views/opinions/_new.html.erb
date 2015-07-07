@@ -1,21 +1,20 @@
- <% if params[:position] == "pro" %>
-        <div id ="opinion_body" class="card-panel light-green lighten-4">
-        <span class="black-text">
+
+<div class="row">
+  <div class="col s12">
+<% if params[:position] == "pro" %>
+        <div class="card light-green lighten-4">
+            <div class="card-content">
+              <span class="card-title"><%= I18n.t("discussion.opinion_agreement") %></span>
+                 <p><%= render partial: "opinions/form", opinion: @opinion %></p>
 
 
-    <% elsif params[:position] ==  "proposal" %>
-         <div id ="opinion_body" class="card-panel amber lighten-4">
-         <span class="black-text">
-
-
-    <% elsif "against" %>
-         <div id ="opinion_body" class="card-panel red lighten-4">
-         <span class="black-text">
+    <% elsif params[:position] == "against"  %>
+     <div class="card red lighten-4">
+       <div class="card-content">
+         <span class="card-title"><%= I18n.t("discussion.opinion_agreement") %></span>
+         <p><%= render partial: "opinions/form", opinion: @opinion %></p>
 
     <% end %>
 
-            <%= render partial: "opinions/form", opinion: @opinion %>
-        </span>
     </div>
-
-
+</div>

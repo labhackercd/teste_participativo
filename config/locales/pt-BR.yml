@@ -208,12 +208,13 @@ pt-BR:
     disagreement: "Discordo"
     proposal: "Proponha"
     discussion_list: "Voltar"
-    opinion: "Responder!"
+    opinion: "Confirmar"
+    placeholder: "Deseja dizer o porquê (opcional)?"
     opinion_blank: "A sua opinão não pôde ser salva, pois o conteúdo é obrigatório!"
     opinion_created: "Opinião criada com sucesso"
     proposal_created: "Proposta criada com sucesso"
-    opinion_agreement: "Diga o porquê da concordância"
-    opinion_disagreement: "Diga o porquê da discordância"
+    opinion_agreement: "Você Concordou"
+    opinion_disagreement: "Você Discordou"
     opinion_proposal: "Diga a sua proposta"
 
   user:

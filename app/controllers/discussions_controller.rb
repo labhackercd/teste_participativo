@@ -9,7 +9,7 @@ class DiscussionsController < ApplicationController
   end
   # GET /discussions/1
   def show
-    @opinions = @discussion.opinions
+    @opinions = @discussion.opinions.not.where(:body => "")
   end
 
   def new

@@ -1,4 +1,8 @@
-var holder = $("#holder");
+var holder = $("#<%= params[:related_opinion_id] %>")
 
-holder.openModal();
-holder.html("<%= escape_javascript(render 'opinions/new')%>")
+
+
+var button = $("#<%= "card-action-#{params[:related_opinion_id]}" %>");
+
+button.hide();
+holder.after("<%= escape_javascript(render 'opinions/new')%>")
