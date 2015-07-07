@@ -1,8 +1,16 @@
-var holder = $("#<%= params[:related_opinion_id] %>")
+var holder = $("#<%= "card-action-#{params[:related_opinion_id]}" %>");
 
 
 
-var button = $("#<%= "card-action-#{params[:related_opinion_id]}" %>");
+var form = $("#<%= "form-opinion-#{params[:related_opinion_id]}"%>")
 
-button.hide();
-holder.after("<%= escape_javascript(render 'opinions/new')%>")
+if (form == null)
+{
+    holder.after("<%= escape_javascript(render 'opinions/new')%>")
+}
+else
+{
+    form.remove();
+    holder.after("<%= escape_javascript(render 'opinions/new')%>")
+}
+

@@ -1,5 +1,5 @@
 
-<div class="row">
+<div id=<%="form-opinion-#{params[:related_opinion_id]}"%> class="row">
   <div class="col s12">
 <% if params[:position] == "pro" %>
         <div class="card light-green lighten-4">
@@ -11,7 +11,7 @@
     <% elsif params[:position] == "against"  %>
      <div class="card red lighten-4">
        <div class="card-content">
-         <span class="card-title"><%= I18n.t("discussion.opinion_agreement") %></span>
+         <span class="card-title"><%= I18n.t("discussion.opinion_disagreement") %></span>
          <p><%= render partial: "opinions/form", opinion: @opinion %></p>
 
     <% end %>
