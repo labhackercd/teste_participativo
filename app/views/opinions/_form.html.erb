@@ -1,7 +1,7 @@
 <%= simple_form_for(@opinion) do |f| %>
 
     <div class="form-inputs">
-      <%= f.text_area :body, placeholder: I18n.t("discussion.placeholder")%>
+      <%= f.text_area :body, placeholder: @placeholder%>
       <%= f.input :discussion_id, :as => :hidden, :input_html => { :value => params[:discussion_id]} %>
       <%= f.input :related_opinion_id, :as => :hidden, :input_html => { :value => params[:related_opinion_id]} %>
       <%= f.input :position, :as => :hidden, :input_html => { :value => params[:position]} %>

@@ -8,4 +8,9 @@
 
 <% end %>
 
+  <% if @discussion.proposal_enabled %>
+  <%= link_to new_opinion_path(:params => {position: "proposal", discussion_id: @discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-large waves-effect waves-light orange' do %>
+  <%= icon('lightbulb-o', I18n.t("discussion.proposal"), class: 'strong')%>
+  <% end %>
+  <% end %>
 </div>

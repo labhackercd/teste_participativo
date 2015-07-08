@@ -31,15 +31,18 @@ class OpinionsController < ApplicationController
 
 
     respond_to do |format|
-      if @opinion.save
-        if @opinion.parent_position == "proposal"
-          format.html {redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
-          format.js   {render action: 'show', status: 'created', location: @discussion}
+    if @opinion.save
+
+      if @opinion.parent_position == "proposal"
+        format.html { redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
+        format.js   {render action: 'show', status: 'created', location: @discussion}
         else
-          format.html {redirect_to @discussion, notice: I18n.t("discussion.opinion_created")}
-          format.js   {render action: 'show', status: 'created', location: @discussion}
-        end
+        format.html { redirect_to @discussion, notice: I18n.t("discussion.opinion_created")}
+        format.js   {render action: 'show', status: 'created', location: @discussion}
       end
+    else
+      format.html {redirect_to @discussion, notice: I18n.t("discussion.proposal_blank")}
+    end
     end
   end
 

@@ -29,6 +29,6 @@ class DiscussionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def discussion_params
-      params.require(:discussion).permit(:title)
+      params.require(:discussion).permit(:title, :proposal_enabled)
     end
 end
