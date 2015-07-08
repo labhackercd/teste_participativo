@@ -213,8 +213,8 @@ pt-BR:
     opinion_blank: "A sua opinão não pôde ser salva, pois o conteúdo é obrigatório!"
     opinion_created: "Opinião criada com sucesso"
     proposal_created: "Proposta criada com sucesso"
-    opinion_agreement: "Você Concordou"
-    opinion_disagreement: "Você Discordou"
+    opinion_agreement: "Você Concorda!"
+    opinion_disagreement: "Você Discorda!"
     opinion_proposal: "Diga a sua proposta"
 
   user:

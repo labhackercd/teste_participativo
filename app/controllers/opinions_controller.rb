@@ -6,6 +6,10 @@ class OpinionsController < ApplicationController
     @opinions = Opinion.all
   end
 
+  def cancel
+
+  end
+
   # GET /opinions/new
   def new
     @opinion = Opinion.new
@@ -26,16 +30,17 @@ class OpinionsController < ApplicationController
     @parent_opinion.related_opinions << @opinion
 
 
-    if @opinion.save
-
-      if @opinion.parent_position == "proposal"
-        redirect_to @discussion, notice: I18n.t("discussion.proposal_created")
-      else
-        redirect_to @discussion, notice: I18n.t("discussion.opinion_created")
+    respond_to do |format|
+      if @opinion.save
+        if @opinion.parent_position == "proposal"
+          format.html {redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
+          format.js   {render action: 'show', status: 'created', location: @discussion}
+        else
+          format.html {redirect_to @discussion, notice: I18n.t("discussion.opinion_created")}
+          format.js   {render action: 'show', status: 'created', location: @discussion}
+        end
       end
-    else
-      redirect_to @discussion, notice: I18n.t("discussion.opinion_blank")
-   end
+    end
   end
 
   private

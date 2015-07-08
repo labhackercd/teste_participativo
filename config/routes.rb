@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users , :controllers => { :registrations => "users/registrations" }
 
-  resources :opinions
+  resources :opinions do
+    get :cancel
+  end
+
   resources :discussions
 
   devise_scope :user do
