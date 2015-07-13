@@ -1,6 +1,6 @@
 class Opinion 
 	include Mongoid::Document
-  	include Mongoid::Timestamps
+	include Mongoid::Timestamps
 	
 	field :body, type: String
 	belongs_to :discussion
