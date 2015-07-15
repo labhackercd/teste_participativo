@@ -4,8 +4,8 @@
 @import "custom";
 
 
-.card .card-action  a {
-	color: white
+.card {
+  background-color:  #F0F0F0
 }
 
 .card .card-title {
@@ -20,11 +20,7 @@ textarea {
   height: 200px;
 }
 
-.right {
-  a {
-    cursor: default;
-  }
-}
+
 
 $color_apple_approx: black;
 
