@@ -6,7 +6,37 @@
 
     <%= content_tag :div, id: "opinions" do %>
         <%@opinions.each do |opinion|%>
-            <%= render "opinions/opinion", opinion: opinion %>
+            <div class="row" id="<%= opinion.id %>">
+              <div class="col s12">
+
+                <div class="card <%=color_by_agreement(opinion.parent_position)%>">
+
+
+
+                <div class="card-content black-text flow-text">
+                  <a name="<%=opinion.id%>"></a>
+                  <span class="card-title"><%= opinion.user.name %></span>
+
+                  <div class="section">
+                    <h5><%= opinion.body %></h5>
+
+                    <div class="right">
+                      <a class="btn-flat lighten-2"><i class="fa fa-thumbs-up" style="color:green"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "pro").count %> </i></a>
+                      <a class="btn-flat lighten-2"><i class="fa fa-thumbs-down" style="color:firebrick"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "against").count %> </i></a>
+
+                      <% if @discussion.proposal_enabled? %>
+                          <a class="btn-flat lighten-2"><i class="fa fa-lightbulb-o" style="color:orange"> <%= Opinion.where(parent_opinion_id: opinion.id, parent_position: "proposal").count %> </i></a>
+                      <% end %>
+                    </div>
+                  </div>
+
+                </div>
+                <%= render "opinions/buttons", opinion: opinion%>
+
+                </div>
+                </div>
+                </div>
+
         <% end %>
     <% end %>
 <% end %>
