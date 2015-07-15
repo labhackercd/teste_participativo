@@ -1,0 +1,18 @@
+<div class="row" id="<%= opinion.id %>">
+  <div class="col s12">
+
+    <div class="card <%=color_by_agreement(opinion.parent_position)%>">
+
+      <div class="card-content  flow-text">
+        <a name="<%=opinion.id%>"></a>
+        <span class="card-title"><%= opinion.user.name %></span>
+
+        <h5><%= opinion.body %></h5>
+
+      </div>
+      <%= render "opinions/buttons", opinion: opinion%>
+
+    </div>
+</div>
+
+</div>
