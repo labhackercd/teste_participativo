@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :opinions do
     get :cancel
+    get :participation
   end
 
   resources :discussions

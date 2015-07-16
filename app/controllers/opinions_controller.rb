@@ -1,5 +1,9 @@
 class OpinionsController < ApplicationController
   before_action :set_opinion, only: [:show, :edit]
+  
+  def participation
+    
+  end
 
   # GET /opinions
   def index

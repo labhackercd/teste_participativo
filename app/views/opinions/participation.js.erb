@@ -1,0 +1,11 @@
+var button = $("#"+"<%= "fa-thumbs-#{params[:postion]}-#{params[:opinion_id]}" %>"),
+    button_class = button.attr('class');
+
+
+
+button_class = button_class.replace('-o-', '-');
+
+
+button.attr('class', button_class);
+
+//button.toggleVal('-o', '');

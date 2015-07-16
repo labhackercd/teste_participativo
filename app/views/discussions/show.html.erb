@@ -1,12 +1,41 @@
 
 <%= content_tag :div, id: "discussion" do %>
-    <div id=discussion_title", class="container center" >
+    <div id="discussion_title", class="container center" >
     <h2 class="blue-text text-lighten-2"><%=@discussion.title%></h2>
     </div>
-
-    <%= content_tag :div, id: "opinions" do %>
-        <%@opinions.each do |opinion|%>
-            <%= render "opinions/opinion", opinion: opinion %>
-        <% end %>
-    <% end %>
+    <div class="container">  
+      
+      <div class="box">        
+        <div class="parent">  
+        </div>        
+        <div class="main">
+          <div class="argument">
+            <div class="text">
+              <p>Quisque fermentum a tellus ut commodo. Fusce quis scelerisque augue, in fringilla ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. In vel lectus vel tellus tincidunt volutpat ac sit amet arcu. Suspendisse finibus vehicula bibendum. Vivamus eget tempor nibh, sed semper massa. Donec et massa justo. Aliquam commodo justo eget nulla pulvinar sodales. Proin at accumsan sapien. Aenean ac volutpat eros. Donec mattis vestibulum arcu a pharetra.</p>
+            </div>
+            <div class="author">
+              <a href="#" class="user">Walter White</a> em <span class="date">14 de Novembro de 2015</span>
+            </div>
+            <div class="position">          
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'up'}), remote: true do %>
+                  <i id="fa-thumbs-up-<%= Opinion.first.id %>" class="fa fa-thumbs-o-up strong"></i><span class="n">2</span>
+              <% end %>
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'down'}), remote: true do %>
+                  <i id="fa-thumbs-down-<%= Opinion.first.id %>" class="fa fa-thumbs-o-down strong"></i><span class="n">2</span>
+              <% end %>
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'lightbulb'}), remote: true do %>
+                  <i id="fa-thumbs-lightbulb-<%= Opinion.first.id %>" class="fa fa-lightbulb-o strong"></i><span class="n"></span>
+              <% end %>
+            </div>
+          </div>
+        </div>        
+      </div>
+      
+      
+      <%= content_tag :div, id: "opinions" do %>
+          <%@opinions.each do |opinion|%>
+              <%= render "opinions/opinion", opinion: opinion %>
+          <% end %>
+      <% end %>
+    </div>
 <% end %>
