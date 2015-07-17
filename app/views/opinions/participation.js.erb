@@ -1,11 +1,31 @@
-var button = $("#"+"<%= "fa-thumbs-#{params[:postion]}-#{params[:opinion_id]}" %>"),
+var position = '<%= "#{params[:position]}" %>',
+    el = position + "<%= "-#{params[:opinion_id]}" %>";
+
+var button = $("#"+el),
     button_class = button.attr('class');
 
+/*var n = */
 
 
-button_class = button_class.replace('-o-', '-');
+
+if (button.is('.up, .down, .prop')) {
+  button.removeClass('up down prop');
+} else {
+  $('.position').find('i').attr('class', function(e) {
+    $(this).removeClass("up down prop");
+  });
+  if (position === 'up') {
+    button.addClass('up');
+  }
+  else if (position === 'down') {
+    button.addClass('down');
+  }
+  else {
+    button.addClass('prop');
+  }
+}
 
 
-button.attr('class', button_class);
 
-//button.toggleVal('-o', '');
+
+

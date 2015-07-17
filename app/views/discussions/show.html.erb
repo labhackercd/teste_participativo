@@ -17,14 +17,14 @@
               <a href="#" class="user">Walter White</a> em <span class="date">14 de Novembro de 2015</span>
             </div>
             <div class="position">          
-              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'up'}), remote: true do %>
-                  <i id="fa-thumbs-up-<%= Opinion.first.id %>" class="fa fa-thumbs-o-up strong"></i><span class="n">2</span>
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {position: 'up'}), remote: true do %>
+                  <i id="up-<%= Opinion.first.id %>" class="fa fa-thumbs-o-up strong"></i><span class="n">1</span>
               <% end %>
-              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'down'}), remote: true do %>
-                  <i id="fa-thumbs-down-<%= Opinion.first.id %>" class="fa fa-thumbs-o-down strong"></i><span class="n">2</span>
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {position: 'down'}), remote: true do %>
+                  <i id="down-<%= Opinion.first.id %>" class="fa fa-thumbs-o-down strong"></i><span class="n">1</span>
               <% end %>
-              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {postion: 'lightbulb'}), remote: true do %>
-                  <i id="fa-thumbs-lightbulb-<%= Opinion.first.id %>" class="fa fa-lightbulb-o strong"></i><span class="n"></span>
+              <%= link_to  opinion_participation_path(Opinion.first.id, :params => {position: 'prop'}), remote: true do %>
+                  <i id="prop-<%= Opinion.first.id %>" class="fa fa-lightbulb-o strong"></i><span class="n">1</span>
               <% end %>
             </div>
           </div>

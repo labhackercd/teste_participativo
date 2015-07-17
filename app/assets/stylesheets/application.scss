@@ -94,6 +94,30 @@ $text-padding: 30px;
         .n {
           margin-left: 10px;
         }
+        i.up:before {
+          content: "\f164";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+          @extend .green-text.text-lighten-1;
+        }
+        i.down:before {
+          content: "\f165";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+          @extend .red-text.text-lighten-1;
+        }
+        i.prop:before {
+          content: "\f0eb";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+          @extend .amber-text.text-accent-4;
+        }
       }
     }
   }
