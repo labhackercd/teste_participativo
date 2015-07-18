@@ -3,7 +3,8 @@
 
   .brand-logo{
     img {
-      width: 60px;
+      width: auto;
+      max-width: 56px;
       margin-left: 10px;
     }
     text-transform: uppercase;

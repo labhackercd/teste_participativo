@@ -1,22 +1,14 @@
 module DiscussionsHelper
 
-  def color_by_agreement(position)
 
-      case position
+  def childrens (opinion)
 
-        when "pro"
-          return "light-green lighten-4"
-        when  "against"
-          # TODO Extract Color
-          return "red lighten-4"
+    if opinion.related_opinion != nil
+      return opinion.related_opinion
+    else
+      return
+    end
 
-        when "proposal"
-          return "amber lighten-4"
-
-        when nil
-          return "light-blue accent-1"
-
-      end
   end
 
   def relevancy_numbers(id, position)

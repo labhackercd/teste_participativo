@@ -1,18 +1,9 @@
-<div class="row" id="<%= opinion.id %>">
-  <div class="col s12">
 
-    <div class="card">
+<div class="card" id="opinion-<%=opinion.id%>">
 
-      <div class="card-content  flow-text">
-        <a name="<%=opinion.id%>"></a>
-        <span class="card-title"><%= opinion.user.name %></span>
+  <h5 class="card-title"><%= opinion.user.name %></h5>
 
-        <h5><%= opinion.body %></h5>
+  <h5 class="card-content"><%= opinion.body %></h5>
 
-      </div>
-      <%= render "opinions/buttons", opinion: opinion%>
-
-    </div>
-</div>
-
-</div>
+<%= render "opinions/buttons", opinion: opinion, discussion: discussion%>
+ </div>

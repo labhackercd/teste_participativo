@@ -1,16 +1,18 @@
+
+
 <div id=<%= "buttons-#{opinion.id}" %>>
-<%= link_to new_opinion_path(:params => {position: "pro", discussion_id: @discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-flat waves-effect waves-green' do %>
+<%= link_to new_opinion_path(:params => {position: "pro", discussion_id: discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-flat waves-effect waves-green' do %>
     <%= icon('thumbs-up', relevancy_numbers(opinion.id, "pro"), class: 'strong')%>
 <% end %>
 
-<%= link_to new_opinion_path(:params => {position: "against", discussion_id: @discussion.id, related_opinion_id: opinion.id}) , remote: true, class: 'btn-flat waves-effect waves-red' do %>
+<%= link_to new_opinion_path(:params => {position: "against", discussion_id: discussion.id, related_opinion_id: opinion.id}) , remote: true, class: 'btn-flat waves-effect waves-red' do %>
     <%= icon('thumbs-down', relevancy_numbers(opinion.id, "against"))%>
 
 <% end %>
 
-  <% if @discussion.proposal_enabled %>
-  <%= link_to new_opinion_path(:params => {position: "proposal", discussion_id: @discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-flat waves-effect waves-orange' do %>
-  <%= icon('lightbulb-o', I18n.t("discussion.proposal"), class: 'strong')%>
-  <% end %>
-  <% end %>
+<% if @discussion.proposal_enabled %>
+    <%= link_to new_opinion_path(:params => {position: "proposal", discussion_id: discussion.id, related_opinion_id: opinion.id}), remote: true, class: 'btn-flat waves-effect waves-orange' do %>
+        <%= icon('lightbulb-o',  relevancy_numbers(opinion.id, "proposal"), class: 'strong')%>
+    <% end %>
+<% end %>
 </div>

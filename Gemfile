@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
 gem 'thin'
+gem 'gon'
 gem 'materialize-sass'
 gem 'font-awesome-sass', '~> 4.3.0'
 

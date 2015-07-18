@@ -1,7 +1,10 @@
 class Opinion 
 	include Mongoid::Document
 	include Mongoid::Timestamps
-	
+
+
+	attr_accessor :adjacents
+
 	field :body, type: String
 	belongs_to :discussion
   belongs_to :user

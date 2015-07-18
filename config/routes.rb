@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   resources :opinions do
     get :cancel
+
   end
 
-  resources :discussions
+  resources :discussions do
+    get :layout, on: :collection
+  end
 
   devise_scope :user do
     authenticated :user do
