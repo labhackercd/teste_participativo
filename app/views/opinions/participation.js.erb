@@ -4,8 +4,31 @@ var position = '<%= "#{params[:position]}" %>',
 var button = $("#"+el),
     button_class = button.attr('class');
 
-/*var n = */
+//console.log(button.parent('a').find('.n').html());
+/*button.parent('.position').find('.n').each(function() {
+  console.log(this);
+});*/
 
+var n = [];
+
+button.closest('.position').children().each(function() {
+  var prevalue = $(this).find('.n').html();
+  if (prevalue === '')
+    prevalue = 0;
+  else prevalue = parseInt(prevalue);
+  n.push(prevalue);
+  
+  if ($(this).find('i').is('.up, .down, .prop')) {
+    $(this).find('.n').html(function() {
+      var value = parseInt($(this).html());
+      value--;
+      if (value === 0)
+        return('');
+      else return(value);
+    });
+  }
+  
+});
 
 
 if (button.is('.up, .down, .prop')) {
@@ -16,16 +39,14 @@ if (button.is('.up, .down, .prop')) {
   });
   if (position === 'up') {
     button.addClass('up');
+    button.parent().find('.n').html(n[0] + 1);
   }
   else if (position === 'down') {
     button.addClass('down');
+    button.parent().find('.n').html(n[1] + 1);
   }
   else {
     button.addClass('prop');
+    button.parent().find('.n').html(n[2] + 1);
   }
 }
-
-
-
-
-

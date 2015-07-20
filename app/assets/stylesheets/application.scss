@@ -89,10 +89,15 @@ $text-padding: 30px;
         }
         a {
           @extend .grey-text;
-          margin-left: 2em;
+          margin-left: 3em;
         }
         .n {
-          margin-left: 10px;
+          margin-left: 5px;
+          position: absolute;
+          top: 8px;
+        }
+        i.up {
+          @extend .green-text.text-lighten-1;
         }
         i.up:before {
           content: "\f164";
@@ -100,23 +105,29 @@ $text-padding: 30px;
           font-style: normal;
           font-weight: normal;
           text-decoration: inherit;
-          @extend .green-text.text-lighten-1;
+        }
+        i.down {
+          @extend .red-text.text-lighten-1;
         }
         i.down:before {
           content: "\f165";
           font-family: FontAwesome;
           font-style: normal;
           font-weight: normal;
-          text-decoration: inherit;
-          @extend .red-text.text-lighten-1;
+          text-decoration: inherit;          
+        }
+        i.prop {
+          @extend .amber-text.text-accent-4;
         }
         i.prop:before {
           content: "\f0eb";
           font-family: FontAwesome;
           font-style: normal;
           font-weight: normal;
-          text-decoration: inherit;
-          @extend .amber-text.text-accent-4;
+          text-decoration: inherit;          
+        }
+        i .d {
+          font-size: .7em;
         }
       }
     }
