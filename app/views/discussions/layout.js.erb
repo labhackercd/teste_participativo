@@ -1,6 +1,3 @@
-
-
-
 // Create a new Div
 discussion = $("<div>", {id: "discussions"});
 
@@ -47,7 +44,9 @@ parentNode = discussion
 
 <% else %>
 // Locate Parent Node
-parentNode = $("#opinion-<%=current_node.parent_opinion.id%>")
+
+parentNode = $("#opinion-<%=current_node.parent_opinion.id%> > #children")
+
 
 <%end%>
 
