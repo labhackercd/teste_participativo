@@ -68,6 +68,9 @@ $text-padding: 30px;
     padding-top: 1px;
     .argument {
       position: relative;
+      .content {
+        position: relative;
+      }
       .text {
         @extend .grey-text.text-darken-3;
         font-size: 1.3em;
