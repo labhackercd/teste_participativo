@@ -4,11 +4,6 @@ var position = '<%= "#{params[:position]}" %>',
 var button = $("#"+el),
     button_class = button.attr('class');
 
-//console.log(button.parent('a').find('.n').html());
-/*button.parent('.position').find('.n').each(function() {
-  console.log(this);
-});*/
-
 var n = [];
 
 button.closest('.position').children().each(function() {
@@ -34,7 +29,7 @@ button.closest('.position').children().each(function() {
 if (button.is('.up, .down, .prop')) {
   button.removeClass('up down prop');
 } else {
-  $('.position').find('i').attr('class', function(e) {
+  button.closest('.position').find('i').attr('class', function(e) {
     $(this).removeClass("up down prop");
   });
   if (position === 'up') {
