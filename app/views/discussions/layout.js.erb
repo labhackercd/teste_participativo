@@ -56,7 +56,7 @@ parentNode.append("<%= escape_javascript(render 'discussions/opinion', :opinion 
 
 
 <%if current_node.related_opinions.size != 0
-   current_node.related_opinions.each do |opinion|
+   current_node.related_opinions.reverse.each do |opinion|
 
   stack.push(opinion)
   end
