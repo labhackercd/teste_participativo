@@ -3,9 +3,11 @@
 @import "font-awesome";
 @import "custom";
 
-.hidden
+
+#children
 {
-  display: none;
+  position: relative;
+  margin-left: 20px;
 }
 
 .card {

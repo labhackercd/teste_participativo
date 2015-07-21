@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
 
 
   def layout
-
+    respond_to :js
   end
 
 
@@ -14,10 +14,7 @@ class DiscussionsController < ApplicationController
   end
   # GET /discussions/1
   def show
-
-    gon.root = @discussion.opinions.where(:parent_id == nil).first.id
-
-    gon.discussion_id= @discussion.id
+    gon.discussion = @discussion.id.to_s
 
   end
 
