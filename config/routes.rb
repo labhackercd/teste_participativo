@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :discussions do
-    get :layout, on: :collection
   end
 
   devise_scope :user do

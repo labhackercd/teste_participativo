@@ -7,14 +7,4 @@
 $ ->
   $('.button-collapse').sideNav()
 
-$.ajax
-  type: 'GET'
-  url: "/discussions/layout"
-  dataType: 'script'
-  data: {'id': gon.discussion},
-  success: (data) ->
-  error: (result) ->
-    console.log 'error'
-
-
 
