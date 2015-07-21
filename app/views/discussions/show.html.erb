@@ -1,32 +1,30 @@
-
 <%= javascript_tag do %>
-// Create a new Div
-discussion = $("<div>", {id: "discussions"});
-
-// Append this div to Body
-$("body").append(discussion)
-
 
 
 //Creating Div of Title
 div_title = $("<div>", {id: "div-title", class:"container center"});
 
-//Append Div of Title on Discussion Div
-discussion.append(div_title)
+
+//Append Div of Title on Body
+$("body").append(div_title)
 
 
+// Create a Container
+container = $("<div>", {class: "container"});
 
-//Creating Text of title
-tex_title = $("<h2>", {id: "title-text", class:"blue-text text-lighten-2"});
-
-//Adding Text of Discussion
-tex_title.text("<%=@discussion.title%>")
-
-
-//Append Div of Title on Discussion Div
-div_title.append(tex_title)
+// Append Container to Body
+$("body").append(container)
 
 
+// Create a Box Container
+box = $("<div>", {class: "box"});
+
+container.append(box);
+
+// Create a Main
+main = $("<div>", {class: "main"});
+
+box.append(main);
 
 
 
@@ -42,7 +40,7 @@ div_title.append(tex_title)
 
 <% if current_node.parent_opinion == nil %>
 // if not parent, so it is root
-parentNode = discussion
+parentNode = main
 
 <% else %>
 // Locate Parent Node

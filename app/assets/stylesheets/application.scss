@@ -2,6 +2,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "custom";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 
 #children
@@ -40,4 +41,96 @@ input:-moz-placeholder {
 }
 textarea:-moz-placeholder {
   color: $color_apple_approx;
+}
+
+$text-padding: 30px;
+
+.box {
+  position: relative;
+  font-family: 'Open Sans';
+  .parent {
+    @extend .cyan.lighten-3;
+    position: relative;
+    z-index: 1;
+    height: 30px;
+    width: 100%;
+  }
+  .main {
+    position: relative;
+    z-index: 2;
+    @extend .grey.lighten-4;
+    -webkit-box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.08);
+    box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.08);
+    padding-left: $text-padding;
+    padding-right: $text-padding;
+    padding-bottom: $text-padding;
+    padding-top: 1px;
+    .argument {
+      position: relative;
+      .text {
+        @extend .grey-text.text-darken-3;
+        font-size: 1.3em;
+      }
+      .author {
+        @extend .grey-text; 
+        a {
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .position {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        i {
+          font-size: 2em;
+        }
+        a {
+          @extend .grey-text;
+          margin-left: 3em;
+        }
+        .n {
+          margin-left: 5px;
+          position: absolute;
+          top: 8px;
+        }
+        i.up {
+          @extend .green-text.text-lighten-1;
+        }
+        i.up:before {
+          content: "\f164";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+        }
+        i.down {
+          @extend .red-text.text-lighten-1;
+        }
+        i.down:before {
+          content: "\f165";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;          
+        }
+        i.prop {
+          @extend .amber-text.text-accent-4;
+        }
+        i.prop:before {
+          content: "\f0eb";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;          
+        }
+        i .d {
+          font-size: .7em;
+        }
+      }
+    }
+  }
 }
