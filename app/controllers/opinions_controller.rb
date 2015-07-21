@@ -2,7 +2,18 @@ class OpinionsController < ApplicationController
   before_action :set_opinion, only: [:show, :edit]
   
   def participation
-    
+
+    @discussion = Discussion.find(params[:discussion_id])
+    @parent_opinion = Opinion.find(params[:opinion_id])
+
+
+    @opinion = Opinion.find_or_create_by(:parent_opinion => @parent_opinion, :user_id => current_user.id)
+
+
+    @discussion.opinions << @opinion
+
+    @parent_opinion.children << @opinion
+
   end
 
   # GET /opinions
@@ -21,18 +32,6 @@ class OpinionsController < ApplicationController
 
   # POST /opinions
   def create
-    @discussion = Discussion.find(opinion_params[:discussion_id])
-    @opinion = Opinion.new(:body => opinion_params[:body], :parent_position => opinion_params[:position], :user_id => current_user.id )
-
-
-
-    @parent_opinion = Opinion.find(params[:opinion]['related_opinion_id'])
-
-
-    @discussion.opinions << @opinion
-
-    @parent_opinion.related_opinions << @opinion
-
 
     respond_to do |format|
     if @opinion.save
@@ -58,6 +57,6 @@ class OpinionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def opinion_params
-       params.require(:opinion).permit(:body, :discussion_id, :position, :related_opinion_id)
+       params.require(:opinion).permit(:body, :discussion_id, :position, :opinion_id)
     end
 end

@@ -7,15 +7,17 @@
       <a href="#" class="user"><%= opinion.user.name %></a> em <span class="date"><%= opinion.created_at %></span>
     </div>
     <div class="position">
-      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'up'}), remote: true do %>
+      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'up', discussion_id: @discussion.id}), remote: true do %>
           <i id="up-<%= opinion.id %>" class="fa fa-thumbs-o-up strong"><span class="d"> Concordar</span></i><span class="n">3</span>
       <% end %>
-      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down'}), remote: true do %>
+      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down', discussion_id: @discussion.id}), remote: true do %>
           <i id="down-<%= opinion.id %>" class="fa fa-thumbs-o-down strong"><span class="d"> Discordar</span></i><span class="n">2</span>
       <% end %>
-      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop'}), remote: true do %>
+      <% if @discussion.proposal_enabled %>
+      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop', discussion_id: @discussion.id}), remote: true do %>
           <i id="prop-<%= opinion.id %>" class="fa fa-lightbulb-o strong"><span class="d"> Propor</span></i><span class="n">8</span>
       <% end %>
+    <% end %>
     </div>
   </div>
 

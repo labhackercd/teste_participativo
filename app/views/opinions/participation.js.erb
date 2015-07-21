@@ -4,6 +4,10 @@ var position = '<%= "#{params[:position]}" %>',
 var button = $("#"+el),
     button_class = button.attr('class');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a Bunch of Small Things (WIP)
 var n = [];
 
 button.closest('.position').children().each(function() {
@@ -27,20 +31,28 @@ button.closest('.position').children().each(function() {
 
 
 if (button.is('.up, .down, .prop')) {
+    debugger;
+    // IF is clicked and Removed AT Same Position
   button.removeClass('up down prop');
 } else {
   button.closest('.position').find('i').attr('class', function(e) {
     $(this).removeClass("up down prop");
   });
   if (position === 'up') {
+      //1
+      debugger;
     button.addClass('up');
     button.parent().find('.n').html(n[0] + 1);
   }
   else if (position === 'down') {
+      //2
+      debugger;
     button.addClass('down');
     button.parent().find('.n').html(n[1] + 1);
   }
   else {
+      //3
+      debugger;
     button.addClass('prop');
     button.parent().find('.n').html(n[2] + 1);
   }
