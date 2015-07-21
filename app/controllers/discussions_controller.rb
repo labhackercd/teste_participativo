@@ -4,18 +4,11 @@ class DiscussionsController < ApplicationController
 
 
 
-  def layout
-    respond_to :js
-  end
-
-
   def index
     @discussion = Discussion.all
   end
   # GET /discussions/1
   def show
-    gon.discussion = @discussion.id.to_s
-
   end
 
   def new
