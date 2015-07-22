@@ -1,0 +1,31 @@
+<div class="position">
+
+  <% position_up = "fa fa-thumbs-o-up strong"
+     position_down = "fa fa-thumbs-o-down strong"
+     position_light = "fa fa-lightbulb-o strong"
+
+     if users_who_interacted(opinion.id).include?(current_user)
+       case (position_by_user(opinion.id, current_user).first)
+         when 'pro'
+            position_up = position_up << " up"
+         when 'against'
+            position_down = position_down << " down"
+         when 'proposal'
+            position_light = position_light << " prop"
+       end
+     end
+  %>
+
+
+  <%= link_to opinion_participation_path(opinion.id, :params => {position: 'up', discussion_id: @discussion.id}), remote: true do %>
+      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span></i><span class="n">3</span>
+  <% end %>
+  <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down', discussion_id: @discussion.id}), remote: true do %>
+      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span></i><span class="n">2</span>
+  <% end %>
+  <% if @discussion.proposal_enabled %>
+      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop', discussion_id: @discussion.id}), remote: true do %>
+          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span></i><span class="n">8</span>
+      <% end %>
+  <% end %>
+</div>

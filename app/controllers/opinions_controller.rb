@@ -1,19 +1,30 @@
 class OpinionsController < ApplicationController
   before_action :set_opinion, only: [:show, :edit]
+  before_action :set_parent, only: [:participation]
   
   def participation
 
-    @discussion = Discussion.find(params[:discussion_id])
-    @parent_opinion = Opinion.find(params[:opinion_id])
+    @opinion = Opinion.find_or_initialize_by(:parent_opinion => @parent_opinion, :user_id => current_user.id)
 
+    # TODO CREATE a ENUM to extract this code out
+    case params[:position]
 
-    @opinion = Opinion.find_or_create_by(:parent_opinion => @parent_opinion, :user_id => current_user.id)
+      when 'up'
+        position = "pro"
 
+      when "down"
+        position = "against"
 
+      when "prop"
+        position = "proposal"
+
+    end
+    @opinion.parent_position = position
     @discussion.opinions << @opinion
-
     @parent_opinion.children << @opinion
 
+      if @opinion.save
+      end
   end
 
   # GET /opinions
@@ -35,7 +46,6 @@ class OpinionsController < ApplicationController
 
     respond_to do |format|
     if @opinion.save
-
       if @opinion.parent_position == "proposal"
         format.html { redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
         format.js   {render action: 'show', status: 'created', location: @discussion}
@@ -54,6 +64,12 @@ class OpinionsController < ApplicationController
     def set_opinion
       @opinion = Opinion.find(params[:id])
     end
+
+  def set_parent
+    @discussion = Discussion.find(params[:discussion_id])
+    @parent_opinion = Opinion.find(params[:opinion_id])
+  end
+
 
     # Only allow a trusted parameter "white list" through.
     def opinion_params

@@ -99,7 +99,7 @@ parentNode = $("#opinion-<%=current_node.parent_opinion.id%> > #children")
 
 <%end%>
 
-parentNode.append("<%= escape_javascript(render 'discussions/opinion', :opinion => current_node, :discussion => @discussion )%>");
+parentNode.append("<%= escape_javascript(render 'opinions/opinion', :opinion => current_node, :discussion => @discussion )%>");
 
 <% stack.pop %>
 

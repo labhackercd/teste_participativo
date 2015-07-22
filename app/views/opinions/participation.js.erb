@@ -16,7 +16,7 @@ button.closest('.position').children().each(function() {
     prevalue = 0;
   else prevalue = parseInt(prevalue);
   n.push(prevalue);
-  
+
   if ($(this).find('i').is('.up, .down, .prop')) {
     $(this).find('.n').html(function() {
       var value = parseInt($(this).html());
@@ -26,13 +26,12 @@ button.closest('.position').children().each(function() {
       else return(value);
     });
   }
-  
+
 });
 
 
 if (button.is('.up, .down, .prop')) {
-    debugger;
-    // IF is clicked and Removed AT Same Position
+
   button.removeClass('up down prop');
 } else {
   button.closest('.position').find('i').attr('class', function(e) {
