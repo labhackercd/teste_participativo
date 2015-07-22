@@ -19,13 +19,18 @@ class OpinionsController < ApplicationController
         position = "proposal"
 
     end
+
+    last_position = @opinion.parent_position if not nil
     @opinion.parent_position = position
     @discussion.opinions << @opinion
     @parent_opinion.children << @opinion
 
-      if @opinion.save
-      end
+  if(last_position == position)
+    @opinion.delete
+  else
+    @opinion.save
   end
+ end
 
   # GET /opinions
   def index
@@ -68,7 +73,9 @@ class OpinionsController < ApplicationController
   def set_parent
     @discussion = Discussion.find(params[:discussion_id])
     @parent_opinion = Opinion.find(params[:opinion_id])
+
   end
+
 
 
     # Only allow a trusted parameter "white list" through.
