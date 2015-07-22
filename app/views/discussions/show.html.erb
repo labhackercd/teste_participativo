@@ -1,5 +1,46 @@
+<div class="send-message amber lighten-4">
+  <div class="emoji-key valign-wrapper">
+    <a href="#"><i class="fa fa-smile-o"></i></a>
+  </div>
+  <div class="message">
+    <textarea rows='1' placeholder='Você concordou, gostaria de dizer o porquê?'></textarea>
+  </div>
+  <div class="send valign-wrapper">
+    <a href="#"><i class="mdi-content-send"></i></a>
+  </div>
+</div>
+
 <%= javascript_tag do %>
 
+function get_height(elt) {
+    return elt.scrollHeight + parseFloat($(elt).css("borderTopWidth")) + parseFloat($(elt).css("borderBottomWidth"));
+}
+
+$("textarea").keyup(function(e) {
+    var found = 0;
+    while (!found) {
+        $(this).height($(this).height() - 10);
+        while($(this).outerHeight() < get_height(this)) {
+            $(this).height($(this).height() + 1);
+            found = 1;
+        };
+    }
+});
+                                                       
+
+                                                       
+$('textarea').focus( function() {
+  if (!$.trim($("textarea").val())) {
+    console.log('vazio');
+  }
+});
+
+$('textarea').blur( function() {
+  if (!$.trim($("textarea").val())) {
+    console.log('saiu');
+  }
+});
+                                                       
 
 //Creating Div of Title
 div_title = $("<div>", {id: "div-title", class:"container center"});
