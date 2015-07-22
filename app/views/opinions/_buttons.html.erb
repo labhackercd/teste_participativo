@@ -18,14 +18,14 @@
 
 
   <%= link_to opinion_participation_path(opinion.id, :params => {position: 'up', discussion_id: @discussion.id}), remote: true do %>
-      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span></i><span class="n">3</span>
+      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span></i><span class="n"><%= relevancy_numbers(opinion.id, "pro" )%></span>
   <% end %>
   <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down', discussion_id: @discussion.id}), remote: true do %>
-      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span></i><span class="n">2</span>
+      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span></i><span class="n"><%= relevancy_numbers(opinion.id, "against" )%></span>
   <% end %>
   <% if @discussion.proposal_enabled %>
       <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop', discussion_id: @discussion.id}), remote: true do %>
-          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span></i><span class="n">8</span>
+          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span></i><span class="n"><%= relevancy_numbers(opinion.id, "proposal" )%></span>
       <% end %>
   <% end %>
 </div>
