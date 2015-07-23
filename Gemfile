@@ -23,6 +23,9 @@ gem 'materialize-sass'
 gem 'font-awesome-sass', '~> 4.3.0'
 
 
+#Pry
+gem 'pry-rails'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
