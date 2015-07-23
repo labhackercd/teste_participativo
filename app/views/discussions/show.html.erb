@@ -54,6 +54,17 @@ $("textarea").on("change keyup paste", function() {
 div_title = $("<div>", {id: "div-title", class:"container center"});
 
 
+//Creating Text of title
+tex_title = $("<h2>", {id: "title-text", class:"blue-text text-lighten-2"});
+
+//Adding Text of Discussion
+tex_title.text("<%=@discussion.title%>")
+
+
+//Append Div of Title on Discussion Div
+div_title.append(tex_title)
+
+
 //Append Div of Title on Body
 $("body").append(div_title)
 
