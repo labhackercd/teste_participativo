@@ -25,11 +25,18 @@ class OpinionsController < ApplicationController
     @discussion.opinions << @opinion
     @parent_opinion.children << @opinion
 
-  if(last_position == position)
-    @opinion.delete
-  else
-    @opinion.save
-  end
+  respond_to do |format|
+    if(last_position == position)
+      if @opinion.delete
+        @result = 'deleted'
+        format.js { head :ok}
+      end
+      else
+        @opinion.save
+        @result = 'save'
+        format.js { head :ok,  opinion: @opinion}
+      end
+   end
  end
 
   # GET /opinions
