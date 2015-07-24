@@ -116,12 +116,13 @@
 
         if ($('#sms') == null)
         {
-            $("#"+"opinion"+"-"+parent).find("#spaceBox").append("<%= escape_javascript(render 'opinions/box')%>");
+            $("#"+"spaceBox"+"-"+parent).find("#spaceBox").append("<%= escape_javascript(render 'opinions/box')%>");
         }
         else
         {
             $('#sms').remove();
-            $("#"+"opinion"+"-"+parent+ "").find("#spaceBox").append("<%= escape_javascript(render 'opinions/box')%>");
+
+            $("#"+"spaceBox"+"-"+parent+ "").append("<%= escape_javascript(render 'opinions/box')%>");
         }
     }
 

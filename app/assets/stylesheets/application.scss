@@ -57,7 +57,22 @@ $text-padding: 30px;
       position: relative;
       .content {
         position: relative;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-end;
+        align-items: flex-start;
         margin-bottom: 80px;
+        .left-bar {
+          width: 10px;
+        }
+        .ab {
+          flex-grow: 1;
+          flex-shrink: 0;
+          flex-basis: 200px;
+          margin-left: 10px;
+        }
       }
       .text {
         @extend .grey-text.text-darken-3;
@@ -86,7 +101,6 @@ $text-padding: 30px;
           @extend .grey-text;
           margin-left: 3em;
         }
-
         i.up {
           @extend .green-text.text-lighten-1;
         }

@@ -76,6 +76,10 @@ parentNode.append("<%= escape_javascript(render 'opinions/opinion', :opinion => 
 
 <% break if stack.empty? %>
 
-<% end %> 
+<% end %>
 
+  $('.left-bar').each(function() {
+  var h = $(this).parent().height();
+  $(this).height(h);
+  });
 <% end %>
