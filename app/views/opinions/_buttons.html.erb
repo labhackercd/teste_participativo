@@ -38,25 +38,33 @@
     function(event, xhr, status, header){
     response = JSON.parse(header.getResponseHeader('result'));
 
-    var upButton = $("."+"btn-" + "up" + "-"+ response.parent)
-    var downButton = $("."+"btn-" + "down" + "-"+ response.parent)
-    var propButton = $("."+"btn-" + "prop" + "-"+ response.parent)
+    parent = response.parent
+    position = response.position
+    status = response.status
 
+    var upButton = $("."+"btn-" + "up" + "-"+ parent)
+    var downButton = $("."+"btn-" + "down" + "-"+ parent)
+    var propButton = $("."+"btn-" + "prop" + "-"+ parent)
 
+    // Adding One Boxe
+    var sms = $("#sms"+parent)
 
-    if (response.status == 'deleted')
+    if (status == 'deleted')
     {
-        if (response.position == "up")
+        if (position == "up")
         {
             upButton.find("i").removeClass("up");
+            sms.remove();
         }
-        if (response.position == "down")
+        if (position == "down")
         {
             downButton.find("i").removeClass("down");
+            sms.remove();
         }
-        if (response.position == "prop")
+        if (position == "prop")
         {
             propButton.find("i").removeClass("prop");
+             sms.remove();
         }
 
     // New Values
@@ -67,21 +75,21 @@
 
     }
 
-    if (response.status == 'saved')
+    if (status == 'saved')
     {
-        if (response.position == "up")
+        if (position == "up")
         {
             upButton.find("i").addClass("up");
             downButton.find("i").removeClass("down");
             propButton.find("i").removeClass("prop");
         }
-        if (response.position == "down")
+        if (position == "down")
         {
             downButton.find("i").addClass("down");
             upButton.find("i").removeClass("up");
             propButton.find("i").removeClass("prop");
         }
-        if (response.position == "prop")
+        if (position == "prop")
         {
             propButton.find("i").addClass("prop");
             downButton.find("i").removeClass("down");
@@ -94,10 +102,39 @@
     downButton.find(".n").text(response.against)
     propButton.find(".n").text(response.proposal)
 
+
+    if (position == 'up')
+    {
+        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message light-green lighten-4"});
+    }
+
+    if (position == 'down')
+    {
+        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message red lighten-4"});
+    }
+
+    if (position == 'prop')
+    {
+        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message amber lighten-4"});
     }
 
 
 
-    console.log(response);
+    // Adding Boxe
+    if (sms.length == 0)
+    {
+        $("#"+"opinion"+"-"+parent).append(sendMessage)
+    }
+
+    else
+    {
+        sms.remove();
+        $("#"+"opinion"+"-"+parent).append(sendMessage)
+    }
+
+
+    }
+
+
     });
 <% end %>
