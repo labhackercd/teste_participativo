@@ -13,7 +13,7 @@ class Opinion
   belongs_to :parent_opinion, :class_name => 'Opinion', :inverse_of => :children
   field :parent_position
 
-	validates :body, presence: true, :if => Proc.new {|opinion| opinion.parent_position == "proposal"}
+	# validates :body, presence: true, :if => Proc.new {|opinion| opinion.parent_position == "proposal"}
 
 
 end

@@ -33,25 +33,71 @@
 
 
 <% content_for :js do %>
-    up_button = $('.btn-up-<%=opinion.id%>')
 
-
-    up_button.bind('ajax:success',
+    $('body').bind('ajax:success',
     function(event, xhr, status, header){
+    response = JSON.parse(header.getResponseHeader('result'));
 
-    result = header.getResponseHeader('result');
+    var upButton = $("."+"btn-" + "up" + "-"+ response.parent)
+    var downButton = $("."+"btn-" + "down" + "-"+ response.parent)
+    var propButton = $("."+"btn-" + "prop" + "-"+ response.parent)
 
-    if (result == 'deleted')
+
+
+    if (response.status == 'deleted')
     {
-     $('.btn-up-<%=opinion.id%> i').removeClass('up')
+        if (response.position == "up")
+        {
+            upButton.find("i").removeClass("up");
+        }
+        if (response.position == "down")
+        {
+            downButton.find("i").removeClass("down");
+        }
+        if (response.position == "prop")
+        {
+            propButton.find("i").removeClass("prop");
+        }
+
+    // New Values
+
+    upButton.find(".n").text(response.pro)
+    downButton.find(".n").text(response.against)
+    propButton.find(".n").text(response.proposal)
 
     }
 
-    if (result == 'saved')
+    if (response.status == 'saved')
     {
-     $('.btn-up-<%=opinion.id%> i').addClass('up')
+        if (response.position == "up")
+        {
+            upButton.find("i").addClass("up");
+            downButton.find("i").removeClass("down");
+            propButton.find("i").removeClass("prop");
+        }
+        if (response.position == "down")
+        {
+            downButton.find("i").addClass("down");
+            upButton.find("i").removeClass("up");
+            propButton.find("i").removeClass("prop");
+        }
+        if (response.position == "prop")
+        {
+            propButton.find("i").addClass("prop");
+            downButton.find("i").removeClass("down");
+            upButton.find("i").removeClass("up");
+        }
+
+    // New Values
+
+    upButton.find(".n").text(response.pro)
+    downButton.find(".n").text(response.against)
+    propButton.find(".n").text(response.proposal)
+
     }
 
 
+
+    console.log(response);
     });
 <% end %>

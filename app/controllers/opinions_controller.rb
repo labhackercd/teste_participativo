@@ -1,7 +1,10 @@
 class OpinionsController < ApplicationController
   before_action :set_opinion, only: [:show, :edit]
   before_action :set_parent, only: [:participation]
-  
+
+  include OpinionsHelper
+  require 'json'
+
   def participation
 
     @opinion = Opinion.find_or_initialize_by(:parent_opinion => @parent_opinion, :user_id => current_user.id)
@@ -29,16 +32,18 @@ class OpinionsController < ApplicationController
     if(last_position == position)
       if @opinion.delete
         @result = 'deleted'
-        format.js { head :ok, result: @result}
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
       end
       else
-        @opinion.save
+        if @opinion.save
         @result = 'saved'
-        format.js { head :ok, result: @result}
-      end
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
+        else
+          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
+        end
    end
  end
-
+end
   # GET /opinions
   def index
     @opinions = Opinion.all
@@ -55,20 +60,20 @@ class OpinionsController < ApplicationController
 
   # POST /opinions
   def create
-
-    respond_to do |format|
-    if @opinion.save
-      if @opinion.parent_position == "proposal"
-        format.html { redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
-        format.js   {render action: 'show', status: 'created', location: @discussion}
-        else
-        format.html { redirect_to @discussion, notice: I18n.t("discussion.opinion_created")}
-        format.js   {render action: 'show', status: 'created', location: @discussion}
-      end
-    else
-      format.html {redirect_to @discussion, notice: I18n.t("discussion.proposal_blank")}
-    end
-    end
+    #
+    # respond_to do |format|
+    # if @opinion.save
+    #   if @opinion.parent_position == "proposal"
+    #     format.html { redirect_to @discussion, notice: I18n.t("discussion.proposal_created")}
+    #     format.js   {render action: 'show', status: 'created', location: @discussion}
+    #     else
+    #     format.html { redirect_to @discussion, notice: I18n.t("discussion.opinion_created")}
+    #     format.js   {render action: 'show', status: 'created', location: @discussion}
+    #   end
+    # else
+    #   format.html {redirect_to @discussion, notice: I18n.t("discussion.proposal_blank")}
+    # end
+    # end
   end
 
   private
