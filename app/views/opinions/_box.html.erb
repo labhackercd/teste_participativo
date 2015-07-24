@@ -2,16 +2,20 @@
     if (position == 'up')
     {
         $("#sms").addClass("light-green lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_agreement")%>");
     }
 
     if (position == 'down')
     {
         $("#sms").addClass("red lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_disagreement")%>");
+
     }
 
     if (position == 'prop')
     {
         $("#sms").addClass("amber lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_proposal")%>");
     }
 
     
@@ -23,7 +27,7 @@
     <a href="#"><i class="fa fa-smile-o"></i></a>
   </div>
   <div class="message">
-    <textarea rows='1' placeholder='Você concordou, gostaria de dizer o porquê?'></textarea>
+    <textarea class="textarea-sms" rows='1' placeholder='Você concordou, gostaria de dizer o porquê?'></textarea>
   </div>
   <div class="send valign-wrapper">
     <%= link_to cancel_opinions_path, remote: true do %>
