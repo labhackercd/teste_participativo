@@ -32,25 +32,28 @@ class OpinionsController < ApplicationController
     if(last_position == position)
       if @opinion.delete
         @result = 'deleted'
-        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation" }.to_json}
       end
       else
         if @opinion.save
         @result = 'saved'
-        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation"  }.to_json}
         else
-          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position] }.to_json}
+          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation" }.to_json}
         end
    end
  end
 end
   # GET /opinions
   def index
+
     @opinions = Opinion.all
   end
 
   def cancel
-
+    respond_to do |format|
+      format.js { head :ok, result: {controller: "cancel"}.to_json}
+   end
   end
 
   # GET /opinions/new
@@ -85,7 +88,6 @@ end
   def set_parent
     @discussion = Discussion.find(params[:discussion_id])
     @parent_opinion = Opinion.find(params[:opinion_id])
-
   end
 
 
