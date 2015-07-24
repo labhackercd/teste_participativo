@@ -29,12 +29,12 @@ class OpinionsController < ApplicationController
     if(last_position == position)
       if @opinion.delete
         @result = 'deleted'
-        format.js { head :ok}
+        format.js { head :ok, result: @result}
       end
       else
         @opinion.save
-        @result = 'save'
-        format.js { head :ok,  opinion: @opinion}
+        @result = 'saved'
+        format.js { head :ok, result: @result}
       end
    end
  end

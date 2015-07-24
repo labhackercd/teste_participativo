@@ -19,24 +19,39 @@
 
 
   <%= link_to opinion_participation_path(opinion.id, :params => {position: 'up', discussion_id: @discussion.id}), remote: true, class:"btn-up-#{opinion.id}" do %>
-      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span></i><span class="n"><%= relevancy_numbers(opinion.id, "pro" )%></span>
+      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span><span class="n"><%= relevancy_numbers(opinion.id, "pro" )%></span></i>
   <% end %>
   <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down', discussion_id: @discussion.id}), remote: true, class:"btn-down-#{opinion.id}" do %>
-      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span></i><span class="n"><%= relevancy_numbers(opinion.id, "against" )%></span>
+      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span><span class="n"><%= relevancy_numbers(opinion.id, "against" )%></span></i>
   <% end %>
   <% if @discussion.proposal_enabled %>
       <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop', discussion_id: @discussion.id}), remote: true, class:"btn-prop-#{opinion.id}" do %>
-          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span></i><span class="n"><%= relevancy_numbers(opinion.id, "proposal" )%></span>
+          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span><span class="n"><%= relevancy_numbers(opinion.id, "proposal" )%></span></i>
       <% end %>
   <% end %>
 </div>
 
 
 <% content_for :js do %>
+    up_button = $('.btn-up-<%=opinion.id%>')
 
-    $('.btn-up-<%=opinion.id%>').bind('ajax:success',
-    function(data){
-    console.log(data)
+
+    up_button.bind('ajax:success',
+    function(event, xhr, status, header){
+
+    result = header.getResponseHeader('result');
+
+    if (result == 'deleted')
+    {
+     $('.btn-up-<%=opinion.id%> i').removeClass('up')
+
     }
-    );
+
+    if (result == 'saved')
+    {
+     $('.btn-up-<%=opinion.id%> i').addClass('up')
+    }
+
+
+    });
 <% end %>

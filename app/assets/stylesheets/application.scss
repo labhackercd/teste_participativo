@@ -86,9 +86,7 @@ $text-padding: 30px;
           @extend .grey-text;
           margin-left: 3em;
         }
-        .n {
-          margin-left: 5px;
-        }
+
         i.up {
           @extend .green-text.text-lighten-1;
         }
@@ -120,6 +118,10 @@ $text-padding: 30px;
           text-decoration: inherit;          
         }
         i .d {
+          font-size: .7em;
+        }
+        i .n {
+          margin-left: 5px;
           font-size: .7em;
         }
       }
