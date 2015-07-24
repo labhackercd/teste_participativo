@@ -209,7 +209,7 @@ pt-BR:
     proposal: "Proponha"
     discussion_list: "Voltar"
     opinion: "Confirmar"
-    placeholder_opinion: "Deseja dizer o porquê (opcional)?"
+    placeholder_opinion: "?"
     placeholder_proposal: "Diga a sua proposta em poucas palavras (obrigatório)"
     proposal_blank: "O conteúdo da proposta deve ser informado"
     opinion_created: "Opinião criada com sucesso"
@@ -217,8 +217,8 @@ pt-BR:
     opinion_agreement_label: "Em concordância com"
     opinion_disagreement_label:  "Em discordância com"
     opinion_proposal_label: "Proposição com base"
-    opinion_agreement: "Você Concorda!"
-    opinion_disagreement: "Você Discorda!"
+    opinion_agreement: "Você Concorda, deseja dizer o porquê?"
+    opinion_disagreement: "Você Discorda, deseja dizer o porquê?"
     opinion_proposal: "Diga a sua proposta"
 
   user:

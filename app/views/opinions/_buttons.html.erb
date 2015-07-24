@@ -8,11 +8,11 @@
      if users_who_interacted(opinion.id).include?(current_user)
        case (position_by_user(opinion.id, current_user).first)
          when 'pro'
-            position_up = position_up << " up"
+           position_up = position_up << " up"
          when 'against'
-            position_down = position_down << " down"
+           position_down = position_down << " down"
          when 'proposal'
-            position_light = position_light << " prop"
+           position_light = position_light << " prop"
        end
      end
   %>
@@ -51,21 +51,21 @@
 
     if (status == 'deleted')
     {
-        if (position == "up")
-        {
-            upButton.find("i").removeClass("up");
-            sms.remove();
-        }
-        if (position == "down")
-        {
-            downButton.find("i").removeClass("down");
-            sms.remove();
-        }
-        if (position == "prop")
-        {
-            propButton.find("i").removeClass("prop");
-             sms.remove();
-        }
+    if (position == "up")
+    {
+    upButton.find("i").removeClass("up");
+    sms.remove();
+    }
+    if (position == "down")
+    {
+    downButton.find("i").removeClass("down");
+    sms.remove();
+    }
+    if (position == "prop")
+    {
+    propButton.find("i").removeClass("prop");
+    sms.remove();
+    }
 
     // New Values
 
@@ -77,24 +77,24 @@
 
     if (status == 'saved')
     {
-        if (position == "up")
-        {
-            upButton.find("i").addClass("up");
-            downButton.find("i").removeClass("down");
-            propButton.find("i").removeClass("prop");
-        }
-        if (position == "down")
-        {
-            downButton.find("i").addClass("down");
-            upButton.find("i").removeClass("up");
-            propButton.find("i").removeClass("prop");
-        }
-        if (position == "prop")
-        {
-            propButton.find("i").addClass("prop");
-            downButton.find("i").removeClass("down");
-            upButton.find("i").removeClass("up");
-        }
+    if (position == "up")
+    {
+    upButton.find("i").addClass("up");
+    downButton.find("i").removeClass("down");
+    propButton.find("i").removeClass("prop");
+    }
+    if (position == "down")
+    {
+    downButton.find("i").addClass("down");
+    upButton.find("i").removeClass("up");
+    propButton.find("i").removeClass("prop");
+    }
+    if (position == "prop")
+    {
+    propButton.find("i").addClass("prop");
+    downButton.find("i").removeClass("down");
+    upButton.find("i").removeClass("up");
+    }
 
     // New Values
 
@@ -103,38 +103,102 @@
     propButton.find(".n").text(response.proposal)
 
 
-    if (position == 'up')
+   createBoxe(sms);
+
+  }
+
+  });
+
+function createBoxe(sms) {
+   if (position == 'up')
     {
-        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message light-green lighten-4"});
-    }
+    sendMessage = $("<div>", {id:"sms"+parent, class:"send-message light-green lighten-4"});
+  }
 
-    if (position == 'down')
-    {
-        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message red lighten-4"});
-    }
+  if (position == 'down')
+  {
+  sendMessage = $("<div>", {id:"sms"+parent, class:"send-message red lighten-4"});
+  }
 
-    if (position == 'prop')
-    {
-        sendMessage = $("<div>", {id:"sms"+parent, class:"send-message amber lighten-4"});
-    }
-
-
-
-    // Adding Boxe
-    if (sms.length == 0)
-    {
-        $("#"+"opinion"+"-"+parent).append(sendMessage)
-    }
-
-    else
-    {
-        sms.remove();
-        $("#"+"opinion"+"-"+parent).append(sendMessage)
-    }
+  if (position == 'prop')
+  {
+  sendMessage = $("<div>", {id:"sms"+parent, class:"send-message amber lighten-4"});
+  }
 
 
-    }
+
+  // Adding Boxe
+  if (sms.length == 0)
+  {
+  $("#"+"opinion"+"-"+parent).append(sendMessage)
+  }
+
+  else
+  {
+  sms.remove();
+  $("#"+"opinion"+"-"+parent).append(sendMessage)
+  }
+
+  // Create Emoji Div
+  emoji = $("<div>", {class:"emoji-key valign-wrapper"});
+
+  // Append Emoji Div
+  sendMessage.append(emoji);
 
 
-    });
+  // Create Emoji A1
+  emojiA1 = $("<a>", {href: "#"});
+
+  emoji.append(emojiA1);
+
+  // Create Emoji I1
+  emojiI1 = $("<i>", {class:"fa fa-smile-o"});
+
+  // Append Emoji I1
+  emojiA1.append(emojiI1);
+
+  // Create Message Box
+  messageBox = $("<div>", {class: "message"});
+
+  // Append Message Box
+  sendMessage.append(messageBox);
+
+
+  // Create TextArea Box
+
+  if (position == 'up')
+  {
+   textAreaBox = $("<textarea>", {rows:'1', placeholder:"<%=I18n.t("discussion.opinion_agreement")%>"});
+  }
+
+  if (position == 'down')
+  {
+    textAreaBox = $("<textarea>", {rows:'1', placeholder:"<%=I18n.t("discussion.opinion_disagreement")%>"});
+  }
+
+  if (position == 'prop')
+  {
+    textAreaBox = $("<textarea>", {rows:'1', placeholder:"<%=I18n.t("discussion.opinion_proposal")%>"});
+  }
+  // Append TextArea Box
+  messageBox.append(textAreaBox);
+
+
+  valignWrapper = $("<div>", {class: "send valign-wrapper"});
+
+
+  // Create Emoji A2
+  emojiA2 = $("<a>", {href: "#"});
+
+  valignWrapper.append(emojiA2);
+
+  // Create Emoji I2
+  emojiI2 = $("<i>", {class:"mdi-content-clear"});
+
+  // Append Emoji I2
+  emojiA2.append(emojiI2);
+
+  sendMessage.append(valignWrapper);
+}
+
 <% end %>

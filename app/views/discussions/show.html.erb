@@ -1,44 +1,5 @@
-
-
 <%= javascript_tag do %>
 
-function get_height(elt) {
-    return elt.scrollHeight + parseFloat($(elt).css("borderTopWidth")) + parseFloat($(elt).css("borderBottomWidth"));
-}
-
-$("textarea").keyup(function(e) {
-    var found = 0;
-    while (!found) {
-        $(this).height($(this).height() - 10);
-        while($(this).outerHeight() < get_height(this)) {
-            $(this).height($(this).height() + 1);
-            found = 1;
-        };
-    }
-});
-                                                       
-var oldVal = "";
-$("textarea").on("change keyup paste", function() {
-    var currentVal = $(this).val();
-    if(currentVal == oldVal) {
-        return; //check to prevent multiple simultaneous triggers
-    }
-    
-    oldVal = currentVal;
-    //action to be performed on textarea changed
-    
-    if (!$.trim($("textarea").val())) {
-      $('.send').find('i').attr('class', 'mdi-content-clear');
-      console.log('vazio');
-    } else {
-      $('.send').find('i').attr('class', 'mdi-content-send');
-      console.log('cheio');
-    }
-});
-
-                                                       
-
-                                                                                                        
 
 //Creating Div of Title
 div_title = $("<div>", {id: "div-title", class:"container center"});
