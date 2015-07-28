@@ -32,14 +32,14 @@ class OpinionsController < ApplicationController
     if(last_position == position)
       if @opinion.delete
         @result = 'deleted'
-        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation" }.to_json}
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}" }.to_json}
       end
       else
         if @opinion.save
         @result = 'saved'
-        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation"  }.to_json}
+        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}"  }.to_json}
         else
-          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation" }.to_json}
+          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation",  opinion: "#{@opinion.id.to_s}" }.to_json}
         end
    end
  end
