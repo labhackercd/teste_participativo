@@ -1,9 +1,11 @@
 class OpinionsController < ApplicationController
-  before_action :set_opinion, only: [:show, :edit]
+  before_action :set_opinion, only: [:show]
   before_action :set_parent, only: [:participation]
 
   include OpinionsHelper
   require 'json'
+
+
 
   def participation
 
