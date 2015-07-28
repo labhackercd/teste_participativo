@@ -52,7 +52,7 @@ $text-padding: 30px;
     padding-left: $text-padding;
     padding-right: $text-padding;
     padding-bottom: $text-padding;
-    padding-top: 1px;
+    padding-top: 20px;
     .argument {
       position: relative;
       .content {
@@ -79,9 +79,11 @@ $text-padding: 30px;
         font-size: 1.3em;
         p {
           margin-bottom: 5px;
+          margin-top: 10px;
         }
       }
       .author {
+        margin-bottom: 10px;
         @extend .grey-text; 
         a {
           color: inherit;
@@ -153,6 +155,7 @@ $text-padding: 30px;
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
+  margin-bottom: 20px;
 		
   .message {
     flex-grow: 1;
