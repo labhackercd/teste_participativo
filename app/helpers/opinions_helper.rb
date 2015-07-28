@@ -11,4 +11,8 @@ module OpinionsHelper
   def position_by_user(id, user)
     return Opinion.find(id).children.collect{|opinion| opinion.parent_position if (opinion.user==user)}.compact
   end
+
+  def stub
+    return Opinion.find_or_create_by(:stub => "true")
+  end
 end

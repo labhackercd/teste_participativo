@@ -1,4 +1,7 @@
 <%= javascript_tag do %>
+
+    document.getElementById('token').value = opinion;
+
     if (position == 'up')
     {
         $("#sms").addClass("light-green lighten-4");
@@ -51,11 +54,11 @@
     if (!$.trim($("textarea").val())) {
 
     sendIcon.attr('class', 'mdi-content-clear');
-    sendIcon.parent().attr("href", "/opinions/cancel");
+    <!--sendIcon.parent().attr("href", "/opinions/cancel/");-->
 
     } else {
     sendIcon.attr('class', 'mdi-content-send');
-    sendIcon.parent().attr("href", "/opinions/update/"+parent);
+    <!--sendIcon.parent().attr("href", "/opinions/update/"+parent);-->
 
     }
     });
@@ -70,11 +73,16 @@
     <a href="#"><i class="fa fa-smile-o"></i></a>
   </div>
   <div class="message">
-    <textarea class="textarea-sms" rows='1' placeholder='Você concordou, gostaria de dizer o porquê?'></textarea>
-  </div>
-  <div class="send valign-wrapper">
-    <%= link_to cancel_opinions_path, remote: true do %>
-        <i class="mdi-content-clear"></i>
+    <%= form_for stub, :url => { :controller => "opinions", :action => "update"} do |f|%>
+        <%= f.hidden_field :id, id: 'token' %>
+        <%= f.text_area :body, rows:1, class:"textarea-sms"  %>
+
+        <div class="send valign-wrapper">
+          <%= f.submit %>
+        </div>
     <% end %>
   </div>
+
+
+
 </div>

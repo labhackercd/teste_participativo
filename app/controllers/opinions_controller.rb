@@ -56,6 +56,22 @@ end
    end
   end
 
+  def update
+
+    @opinion = Opinion.find(params[:opinion]['id'])
+
+    @opinion.body = params[:opinion]['body']
+
+    @opinion.save!
+
+    # Delete Stub
+    Opinion.find_by(:discussion_id => nil).delete
+
+    redirect_to @opinion.discussion
+
+  end
+
+
   # GET /opinions/new
   def new
     @opinion = Opinion.new
@@ -93,6 +109,7 @@ end
 
 
     # Only allow a trusted parameter "white list" through.
+
     def opinion_params
        params.require(:opinion).permit(:body, :discussion_id, :position, :opinion_id)
     end
