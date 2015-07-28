@@ -26,7 +26,7 @@
 
     <div class="author">
           <a href="#" class="user"><%= opinion.user.name %></a> em <span class="date"><%=
-          distance_of_time_in_words(Time.now, opinion.created_at) %></span>
+          distance_of_time_in_words(Time.now, opinion.updated_at) %></span>
     </div>
         <%= render 'opinions/buttons', opinion: opinion%>
     </div>
