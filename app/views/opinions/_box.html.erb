@@ -76,11 +76,11 @@
     <%= form_for stub, :url => { :controller => "opinions", :action => "update"} do |f|%>
         <%= f.hidden_field :id, id: 'token' %>
         <%= f.text_area :body, rows:1, class:"textarea-sms"  %>
-
-        <div class="send valign-wrapper">
-          <%= f.submit %>
-        </div>
+        <%= f.submit %>
     <% end %>
+  </div>
+  <div class="send valign-wrapper">
+
   </div>
 
 
