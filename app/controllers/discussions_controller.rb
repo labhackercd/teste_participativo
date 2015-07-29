@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
 
 
   def index
-    @discussion = Discussion.all
+    @discussion = Discussion.where(:shown => true)
   end
   # GET /discussions/1
   def show
