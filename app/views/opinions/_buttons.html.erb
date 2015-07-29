@@ -48,6 +48,8 @@
     position = response.position
     status = response.status
 
+
+
     var upButton = $("."+"btn-" + "up" + "-"+ parent)
     var downButton = $("."+"btn-" + "down" + "-"+ parent)
     var propButton = $("."+"btn-" + "prop" + "-"+ parent)
@@ -84,6 +86,11 @@
     downButton.find(".n").text(response.against)
     propButton.find(".n").text(response.proposal)
 
+    }
+
+    if (status == 'impossible to delete')
+    {
+        location.reload();
     }
 
     if (status == 'saved')

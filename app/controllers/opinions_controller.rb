@@ -32,17 +32,25 @@ class OpinionsController < ApplicationController
 
   respond_to do |format|
     if(last_position == position)
-      if @opinion.delete
-        @result = 'deleted'
+
+      if @opinion.children.empty? # No one has interacted with him
+        if @opinion.delete
+          @result = 'deleted'
+          format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}" }.to_json}
+        end
+      else
+        @result = 'impossible to delete'
+        flash[:error] = I18n.t("discussion.opinion_disabled")
         format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}" }.to_json}
       end
+
+    else
+      if @opinion.save
+      @result = 'saved'
+      format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}"  }.to_json}
       else
-        if @opinion.save
-        @result = 'saved'
-        format.js { head :ok, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation", opinion: "#{@opinion.id.to_s}"  }.to_json}
-        else
-          format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation",  opinion: "#{@opinion.id.to_s}" }.to_json}
-        end
+        format.js { head :error, result: {pro: relevancy_numbers(@parent_opinion, "pro") , against: relevancy_numbers(@parent_opinion, "against"), proposal: relevancy_numbers(@parent_opinion, "proposal"), status: @result, parent: "#{@parent_opinion.id.to_s}", position: params[:position], controller: "participation",  opinion: "#{@opinion.id.to_s}" }.to_json}
+      end
    end
  end
 end

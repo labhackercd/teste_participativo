@@ -214,6 +214,7 @@ pt-BR:
     proposal_blank: "O conteúdo da proposta deve ser informado"
     opinion_created: "Opinião criada com sucesso"
     proposal_created: "Proposta criada com sucesso"
+    opinion_disabled: "Essa opinião não pôde ser alterada pois outro usuário já interagiu com ela"
     opinion_agreement_label: "Em concordância com"
     opinion_disagreement_label:  "Em discordância com"
     opinion_proposal_label: "Proposição com base"
