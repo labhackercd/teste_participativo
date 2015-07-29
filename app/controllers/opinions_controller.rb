@@ -52,11 +52,6 @@ end
     @opinions = Opinion.all
   end
 
-  def cancel
-    respond_to do |format|
-      format.js { head :ok, result: {controller: "cancel"}.to_json}
-   end
-  end
 
   def update
 

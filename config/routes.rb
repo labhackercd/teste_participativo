@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users , :controllers => { :registrations => "users/registrations" }
 
   resources :opinions do
-    get :cancel, :on => :collection
     get :participation
   end
 

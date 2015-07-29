@@ -22,6 +22,9 @@
     }
 
     seeBoxe();
+
+
+
     function seeBoxe(){
     function get_height(elt) {
     return elt.scrollHeight + parseFloat($(elt).css("borderTopWidth")) + parseFloat($(elt).css("borderBottomWidth"));
@@ -64,6 +67,27 @@
     });
     }
 
+
+    $(".form-icon").click(function(e) {
+
+    e.preventDefault();
+
+    sendIcon = $('.send').find('i');
+
+    if (sendIcon.hasClass("mdi-content-send"))
+    {
+        $( ".submit-form" ).trigger("click");
+    }
+
+
+    if (sendIcon.hasClass("mdi-content-clear"))
+    {
+        $("#sms").remove();
+    }
+
+    });
+
+
     
 
 <% end %>
@@ -76,11 +100,13 @@
     <%= form_for stub, :url => { :controller => "opinions", :action => "update"} do |f|%>
         <%= f.hidden_field :id, id: 'token' %>
         <%= f.text_area :body, rows:1, class:"textarea-sms"  %>
-        <%= f.submit %>
+        <%= f.submit class: "submit-form", hidden:true %>
     <% end %>
   </div>
   <div class="send valign-wrapper">
-
+    <a class="form-icon" href="">
+      <i class="mdi-content-clear"></i>
+    </a>
   </div>
 
 
