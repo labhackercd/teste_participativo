@@ -1,82 +1,114 @@
 <%= javascript_tag do %>
-
-
-//Creating Div of Title
-div_title = $("<div>", {id: "div-title", class:"container center"});
-
-
-//Creating Text of title
-tex_title = $("<h2>", {id: "title-text", class:"blue-text text-lighten-2"});
-
-//Adding Text of Discussion
-tex_title.text("<%=@discussion.title%>")
-
-
-//Append Div of Title on Discussion Div
-div_title.append(tex_title)
-
-
-//Append Div of Title on Body
-$("body").append(div_title)
-
-
-// Create a Container
-container = $("<div>", {class: "container"});
-
-// Append Container to Body
-$("body").append(container)
-
-
-// Create a Box Container
-box = $("<div>", {class: "box"});
-
-container.append(box);
-
-// Create a Main
-main = $("<div>", {class: "main"});
-
-box.append(main);
+  createHeader();
 
 
 
-//Do the magical Loop
 
-<% stack = [] %>
-<% stack.push(@root)  %>
+  if ("<%= @order_by %>" == "history")
+  {
+    orderHistory();
+  }
 
-<% loop do %>
-
-<% current_node = stack.last %>
-
-
-<% if current_node.parent_opinion == nil %>
-// if not parent, so it is root
-parentNode = main
-
-<% else %>
-// Locate Parent Node
-
-parentNode = $("#opinion-<%=current_node.parent_opinion.id%> > #children")
+  if ("<%= @order_by %>" == "relevance")
+  {
+    orderRelevance();
+  }
 
 
-<%end%>
-
-parentNode.append("<%= escape_javascript(render 'opinions/opinion', :opinion => current_node, :discussion => @discussion )%>");
-
-<% stack.pop %>
 
 
-<%if current_node.children.size != 0
-   current_node.children.not.where(:body => nil).reverse.each do |opinion|
 
-  stack.push(opinion)
-  end
-   end
-%>
 
-<% break if stack.empty? %>
+ function createHeader(){
 
-<% end %>
+  // Creating Div of Title
+  div_title = $("<div>", {id: "div-title", class:"container center"});
+
+
+  // Creating Text of title
+  tex_title = $("<h2>", {id: "title-text", class:"blue-text text-lighten-2"});
+
+  //Adding Text of Discussion
+  tex_title.text("<%=@discussion.title%>")
+
+
+  //Append Div of Title on Discussion Div
+  div_title.append(tex_title)
+
+
+  //Append Div of Title on Body
+  $("body").append(div_title)
+
+
+  // Create a Container
+  container = $("<div>", {class: "container"});
+
+  // Append Container to Body
+  $("body").append(container)
+
+
+  // Create a Box Container
+  box = $("<div>", {class: "box"});
+
+  container.append(box);
+
+  // Create a Main
+  main = $("<div>", {class: "main"});
+
+  box.append(main);
+
+  }
+
+
+
+  function orderHistory() {
+
+  <% stack = [] %>
+  <% stack.push(@root)  %>
+
+  <% loop do %>
+
+      <% current_node = stack.last %>
+
+
+      <% if current_node.parent_opinion == nil %>
+          // if not parent, so it is root
+          parentNode = main
+
+      <% else %>
+          // Locate Parent Node
+
+          parentNode = $("#opinion-<%=current_node.parent_opinion.id%> > #children")
+
+
+      <%end%>
+
+      parentNode.append("<%= escape_javascript(render 'opinions/opinion', :opinion => current_node, :discussion => @discussion )%>");
+
+      <% stack.pop %>
+
+
+      <%if current_node.children.size != 0
+          current_node.children.not.where(:body => nil).reverse.each do |opinion|
+
+            stack.push(opinion)
+          end
+        end
+      %>
+
+      <% break if stack.empty? %>
+
+  <% end %>
+  }
+
+  function orderRelavance(){
+
+
+
+  }
+
+
+
 
   $('.left-bar').each(function() {
   var h = $(this).parent().height();

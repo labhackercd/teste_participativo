@@ -24,6 +24,7 @@ class DiscussionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
       @discussion = Discussion.find  params[:id]
+      @order_by = params[:order_by]
       @root = @discussion.opinions.where(:parent_opinion_id == nil).first
     end
 

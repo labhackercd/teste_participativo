@@ -3,7 +3,7 @@
   <div class="col s12">
     <div class="card grey lighten-2">
       <div class="card-content black-text flow-text">
-          <span class="card-body"><p><%= link_to "#{discussion.title}", discussion_path(discussion) %></p></span>
+          <span class="card-body"><p><%= link_to "#{discussion.title}", discussion_path(discussion, :order_by => "history") %></p></span>
       </div>
     </div>
   </div>
