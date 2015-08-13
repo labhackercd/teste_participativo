@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users , :controllers => { :registrations => "users/registrations" }
 
-  resources :opinions do
-    get :participation
+  resources :discussions do
+    resources :opinions do
+      get :participation
+    end
   end
 
-  resources :discussions do
-  end
+
+
+
 
   devise_scope :user do
     authenticated :user do

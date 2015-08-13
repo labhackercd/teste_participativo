@@ -97,7 +97,7 @@
     <a><i class="fa fa-smile-o"></i></a>
   </div>
   <div class="message">
-    <%= form_for stub, :url => { :controller => "opinions", :action => "update"} do |f|%>
+    <%= form_for stub, :url => discussion_opinion_path(@discussion, stub)  do |f|%>
         <%= f.hidden_field :id, id: 'token' %>
         <%= f.text_area :body, rows:1, class:"textarea-sms"  %>
         <%= f.submit class: "submit-form", hidden:true %>

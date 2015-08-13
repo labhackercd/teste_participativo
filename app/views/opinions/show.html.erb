@@ -1,0 +1,35 @@
+<%= javascript_tag do %>
+
+ // Create a Container
+ container = $("<div>", {class: "container"});
+
+  // Append Container to Body
+  $("body").append(container)
+
+
+  // Create a Box Container
+  box = $("<div>", {class: "box"});
+
+  container.append(box);
+
+  // Create a Main
+  main = $("<div>", {class: "main"});
+
+  box.append(main);
+
+
+  main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => @opinion, :discussion => @discussion, :context => false )%>");
+
+
+  parentNode = $("#opinion-<%=@opinion.id%> > #children")
+
+  <% @opinion.children.each do |child| %>
+  parentNode.append("<%= escape_javascript(render 'layouts/opinion', :opinion => child, :discussion => @discussion, :context => true )%>");
+  <% end %>
+
+
+  $('.left-bar').each(function() {
+  var h = $(this).parent().height();
+  $(this).height(h);
+  });
+<% end %>

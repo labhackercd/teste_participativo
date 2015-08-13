@@ -16,7 +16,5 @@ module OpinionsHelper
     return Opinion.find_or_create_by(:stub => "true")
   end
 
-  def absolute_relevancy()
 
-  end
 end

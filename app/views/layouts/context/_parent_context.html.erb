@@ -1,0 +1,33 @@
+<%
+
+   case opinion.parent_position
+     when 'pro'
+        bar = "green lighten-1"
+
+     when 'against'
+        bar = "red lighten-1"
+
+     when 'proposal'
+        bar = "amber lighten-1"
+   end
+
+%>
+
+
+
+<div class="argument" id="opinion-<%=opinion.id%>">
+  <div class="content">
+
+    <div class="text">
+          <p><%= opinion.body %></p>
+    </div>
+
+
+    <div class="author">
+          <a href="" class="user"><%= opinion.user.name %></a> em <span class="date"><%=
+          distance_of_time_in_words(Time.now, opinion.updated_at) %></span>
+    </div>
+
+</div>
+</div>
+

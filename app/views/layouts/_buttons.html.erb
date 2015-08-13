@@ -18,14 +18,14 @@
   %>
 
 
-  <%= link_to opinion_participation_path(opinion.id, :params => {position: 'up', discussion_id: @discussion.id}), remote: true, class:"btn-up-#{opinion.id}" do %>
+  <%= link_to discussion_opinion_participation_path(@discussion.id, opinion.id,  :params => {position: 'up'}), remote: true, class:"btn-up-#{opinion.id}" do %>
       <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span><span class="n"><%= relevancy_numbers(opinion.id, "pro" )%></span></i>
   <% end %>
-  <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'down', discussion_id: @discussion.id}), remote: true, class:"btn-down-#{opinion.id}" do %>
+  <%= link_to  discussion_opinion_participation_path(@discussion.id, opinion.id, :params => {position: 'down'}), remote: true, class:"btn-down-#{opinion.id}" do %>
       <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span><span class="n"><%= relevancy_numbers(opinion.id, "against" )%></span></i>
   <% end %>
   <% if @discussion.proposal_enabled %>
-      <%= link_to  opinion_participation_path(opinion.id, :params => {position: 'prop', discussion_id: @discussion.id}), remote: true, class:"btn-prop-#{opinion.id}" do %>
+      <%= link_to  discussion_opinion_participation_path(@discussion.id, opinion.id, :params => {position: 'prop'}), remote: true, class:"btn-prop-#{opinion.id}" do %>
           <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span><span class="n"><%= relevancy_numbers(opinion.id, "proposal" )%></span></i>
       <% end %>
   <% end %>
@@ -124,13 +124,13 @@
 
         if ($('#sms') == null)
         {
-            $("#"+"spaceBox"+"-"+parent).find("#spaceBox").append("<%= escape_javascript(render 'opinions/box')%>");
+            $("#"+"spaceBox"+"-"+parent).find("#spaceBox").append("<%= escape_javascript(render 'layouts/box')%>");
         }
         else
         {
             $('#sms').remove();
 
-            $("#"+"spaceBox"+"-"+parent+ "").append("<%= escape_javascript(render 'opinions/box')%>");
+            $("#"+"spaceBox"+"-"+parent+ "").append("<%= escape_javascript(render 'layouts/box')%>");
         }
     }
 

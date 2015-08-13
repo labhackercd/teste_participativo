@@ -83,7 +83,7 @@
 
       <%end%>
 
-      parentNode.append("<%= escape_javascript(render 'opinions/opinion', :opinion => current_node, :discussion => @discussion )%>");
+      parentNode.append("<%= escape_javascript(render 'layouts/opinion', :opinion => current_node, :discussion => @discussion )%>");
 
       <% stack.pop %>
 
@@ -103,7 +103,7 @@
 
   function orderRelavance(){
 
-
+    <% @root%>
 
   }
 
