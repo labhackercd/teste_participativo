@@ -18,13 +18,24 @@
   box.append(main);
 
 
-  main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => @opinion, :discussion => @discussion, :context => false )%>");
+
+  // Create a Parent
+  parent = $("<div>", {class: "parent"});
 
 
-  parentNode = $("#opinion-<%=@opinion.id%> > #children")
+  parent.append("<%= escape_javascript(render 'layouts/context/parent_context', :opinion => @opinion.parent_opinion, :discussion => @discussion)%>");
+
+
+  main.append(parent)
+
+  main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => @opinion, :discussion => @discussion)%>");
+
+
+
+  opinionNode = $("#opinion-<%=@opinion.id%> > #children")
 
   <% @opinion.children.each do |child| %>
-  parentNode.append("<%= escape_javascript(render 'layouts/opinion', :opinion => child, :discussion => @discussion, :context => true )%>");
+  opinionNode.append("<%= escape_javascript(render 'layouts/opinion', :opinion => child, :discussion => @discussion)%>");
   <% end %>
 
 

@@ -13,8 +13,6 @@
 
 %>
 
-
-
 <div class="argument" id="opinion-<%=opinion.id%>">
   <div class="content">
     <div class="left-bar <%=bar%>"> </div>
@@ -27,9 +25,8 @@
     <div class="author">
           <a href="" class="user"><%= opinion.user.name %></a> em <span class="date"><%=
           distance_of_time_in_words(Time.now, opinion.updated_at) %></span>
-       <% if context == true %>
+
       <p><%= link_to "Veja o Contexto desta Opinião", discussion_opinion_path(@discussion, opinion), method: :get %></p>
-      <% end %>
     </div>
 
         <%= render 'layouts/buttons', opinion: opinion%>
