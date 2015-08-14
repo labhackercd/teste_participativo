@@ -26,7 +26,7 @@
   parent.append("<%= escape_javascript(render 'layouts/context/parent_context', :opinion => @opinion.parent_opinion, :discussion => @discussion)%>");
 
 
-  main.append(parent)
+  box.before(parent)
 
   main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => @opinion, :discussion => @discussion)%>");
 
