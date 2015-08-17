@@ -98,12 +98,24 @@
 
       <% break if stack.empty? %>
 
+
   <% end %>
+
   }
 
-  function orderRelavance(){
+  function orderRelevance(){
 
-    <% @root%>
+  <% hash = {} %>
+  <%@discussion.opinions.not.where(:body => nil).each do |opinion| %>
+      <% hash[opinion] = opinion.absolute_relevancy() %>
+  <% end %>
+
+  <% sorted_hash = hash.sort_by {|_key, value| value}.reverse.to_h
+     sorted_hash.each do |opinion, value| %>
+      main.append("<%=value%>")
+      main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => opinion, :discussion => @discussion )%>");
+  <% end %>
+
 
   }
 
