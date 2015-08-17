@@ -22,10 +22,11 @@
   // Create a Parent
   parent = $("<div>", {class: "parent"});
 
-
+  <% if @opinion.parent_opinion != nil %>
   parent.append("<%= escape_javascript(render 'layouts/context/parent_context', :opinion => @opinion.parent_opinion, :discussion => @discussion)%>");
 
-
+  <% end %>
+  
   box.before(parent)
 
   main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => @opinion, :discussion => @discussion)%>");
