@@ -14,7 +14,20 @@
 %>
 
 <div class="argument" id="opinion-<%=opinion.id%>">
-  <div class="content card-panel">
+
+  <% if first == true %>
+      <div class="content card-panel white">
+
+
+   <% else %>
+
+      <div class="content card-panel special-color">
+
+
+  <% end %>
+
+
+
     <div class="left-bar <%=bar%>"> </div>
     <div class="ab">
 
@@ -32,9 +45,9 @@
 
       <%= render 'layouts/buttons', opinion: opinion%>
     </div>
-    <div id="spaceBox-<%=opinion.id%>" class="spacebox">
     </div>
-    </div>
+  <div id="spaceBox-<%=opinion.id%>" class="">
+  </div>
   <div id="children" class="">
   </div>
 </div>

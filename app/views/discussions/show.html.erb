@@ -111,7 +111,7 @@
   <% end %>
 
   <% sorted_hash = hash.sort_by {|_key, value| value}.reverse.to_h
-     sorted_hash.each do |opinion, value| %>
+     sorted_hash.take(12).each do |opinion, value| %>
       main.append("Relevância: <%=value%>")
       main.append("<%= escape_javascript(render 'layouts/opinion', :opinion => opinion, :discussion => @discussion )%>");
   <% end %>
