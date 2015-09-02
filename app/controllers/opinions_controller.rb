@@ -78,6 +78,7 @@ end
     # Delete Stub
     Opinion.find_by(:discussion_id => nil).delete
 
+    # TODO trocar o redirecionamento
     redirect_to discussion_path(@opinion.discussion, :order_by => "history")
 
   end

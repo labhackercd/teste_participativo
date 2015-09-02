@@ -39,7 +39,7 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  # FIXME Workaround of Mongoid and Devise
+  # Workaround of Mongoid and Devise
   class << self
     def serialize_from_session(key, salt)
       record = to_adapter.get(key[0]["$oid"])

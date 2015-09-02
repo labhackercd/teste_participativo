@@ -6,7 +6,8 @@ class Opinion
 
 	field :body, type: String
 	field :stub, type: Boolean
-	belongs_to :discussion
+	has_many :tags
+
   belongs_to :user
 	index({ starred: 1 })
 
