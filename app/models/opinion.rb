@@ -20,11 +20,9 @@ class Opinion
 
 
 	def absolute_relevancy
-
-		# TODO This relevancy formula can be changed on future
 		relevancy = 0
 		self.children.each do |opinion_relevancy|
-			relevancy_time_in_days = ((Time.now - (opinion_relevancy.created_at))/60*60*24)
+			relevancy_time_in_days = (((Time.now - opinion_relevancy.created_at))/86400)
 			relevancy = relevancy + (1+(10/(Math::E**(relevancy_time_in_days*0.12))))
 		end
 
