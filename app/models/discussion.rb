@@ -9,6 +9,6 @@ class Discussion
 	field :shown, type: Boolean, default: true
 	field :proposal_enabled, type: Boolean, default: false
 	slug  :title, :history => true
-	has_many :tags
+	has_many :opinions
 	index({ starred: 1 })
 end

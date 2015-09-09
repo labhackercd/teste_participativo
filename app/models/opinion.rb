@@ -6,9 +6,10 @@ class Opinion
 
 	field :body, type: String
 	field :stub, type: Boolean
-	has_many :tags
+
 
   belongs_to :user
+	belongs_to :discussion
 	index({ starred: 1 })
 
 	has_many :children, :class_name => 'Opinion',  :inverse_of => :parent_opinion
@@ -16,8 +17,6 @@ class Opinion
   field :parent_position
 
 
-
-	# validates :body, presence: true, :if => Proc.new {|opinion| opinion.parent_position == "proposal"}
 
 
 	def absolute_relevancy
