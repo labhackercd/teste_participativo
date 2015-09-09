@@ -6,6 +6,7 @@ class Discussion
 
 
 	field :title
+	field :shown, type: Boolean, default: true
 	field :proposal_enabled, type: Boolean, default: false
 	slug  :title, :history => true
 	has_many :opinions

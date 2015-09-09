@@ -2,12 +2,27 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "custom";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$placeholder-color: #9e9e9e;
+$others-opinion: #EFF8FD;
+
+.special-color
+{
+ background-color: $others-opinion;
+}
+
+
+.parent-content
+{
+  margin-right: 100px;
+}
 
 
 #children
 {
   position: relative;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .card {
@@ -28,16 +43,182 @@ textarea {
 
 
 
-$color_apple_approx: black;
+$text-padding: 30px;
 
-::-webkit-input-placeholder {
-  color: $color_apple_approx;
+.spacebox {
+  width: 100%;
+  margin-top: 20px;
 }
-​ {
+
+.box {
+  position: relative;
+  font-family: 'Open Sans';
+  .parent {
+    @extend .cyan.lighten-3;
+    position: relative;
+  }
+  .main {
+    position: relative;
+    z-index: 2;
+    padding-left: $text-padding;
+    padding-right: $text-padding;
+    padding-bottom: $text-padding;
+    padding-top: 30px;
+    .argument {
+      position: relative;
+      .content {
+        position: relative;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-end;
+        align-items: flex-start;
+        margin-bottom: 80px;
+        .left-bar {
+          width: 6px;
+        }
+        .ab {
+          flex-grow: 1;
+          flex-shrink: 0;
+          flex-basis: 200px;
+          margin-left: 10px;
+        }
+      }
+      .text {
+        @extend .grey-text.text-darken-3;
+        font-size: 1.3em;
+        p {
+          margin-bottom: 5px;
+          margin-top: 10px;
+        }
+      }
+      .author {
+        margin-bottom: 10px;
+        @extend .grey-text; 
+        a {
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .position {
+        bottom: -30px;
+        right: 30px;
+        i {
+          font-size: 1.5em;
+        }
+        a {
+          @extend .grey-text;
+          margin-right: 2em;
+        }
+        i.up {
+          @extend .green-text.text-lighten-1;
+        }
+        i.up:before {
+          content: "\f164";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+        }
+        i.down {
+          @extend .red-text.text-lighten-1;
+        }
+        i.down:before {
+          content: "\f165";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;          
+        }
+        i.prop {
+          @extend .amber-text.text-accent-4;
+        }
+        i.prop:before {
+          content: "\f0eb";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;          
+        }
+        i .d {
+          font-size: .7em;
+        }
+        i .n {
+          margin-left: 5px;
+          font-size: .7em;
+        }
+      }
+    }
+  }
 }
-input:-moz-placeholder {
-  color: $color_apple_approx;
-}
-textarea:-moz-placeholder {
-  color: $color_apple_approx;
+
+.send-message {
+  padding: 10px 0px;
+  min-height: 60px;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+		
+  .message {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 200px;
+    ::-webkit-input-placeholder {
+       color: $placeholder-color;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: $placeholder-color; 
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: $placeholder-color;
+    }
+
+    :-ms-input-placeholder {  
+       color: $placeholder-color;
+    }
+    textarea {
+      resize: none;
+      /* box-sizing: padding-box; */
+      overflow:hidden;
+      /* demo only: */
+      padding:10px;
+      height: 50px;
+      display:block;
+      font-size: 1.3em;
+      background-color: white;
+      font-family: 'Open Sans';
+      border: none;
+      &:focus {
+        outline-width: 0;
+      }
+    }
+
+  }
+		
+ .send, .emoji-key {
+   width: 70px;
+   min-height: 50px;
+   position: relative;
+   align-self: flex-end;
+   text-align: center;
+   a {
+     margin-left: auto;
+     margin-right: auto;
+   }
+   i {
+      font-size: 2em;
+      @extend .grey-text.text-darken-1;
+   }
+ }
+  
 }

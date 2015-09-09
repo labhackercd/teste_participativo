@@ -1,0 +1,54 @@
+<%
+
+   case opinion.parent_position
+     when 'pro'
+        bar = "green lighten-1"
+
+     when 'against'
+        bar = "red lighten-1"
+
+     when 'proposal'
+        bar = "amber lighten-1"
+   end
+
+%>
+
+<div class="argument" id="opinion-<%=opinion.id%>">
+
+  <% if first == true %>
+      <div class="content card-panel white">
+
+
+   <% else %>
+
+      <div class="content card-panel special-color">
+
+
+  <% end %>
+
+
+
+    <div class="left-bar <%=bar%>"> </div>
+    <div class="ab">
+
+    <div class="text">
+          <p><%= opinion.body %></p>
+    </div>
+
+    <div class="author">
+          <a href="" class="user"><%= opinion.user.name %></a> em <span class="date"><%=
+          distance_of_time_in_words(Time.now, opinion.updated_at) %></span>
+
+    </div>
+      <p><%= link_to "Veja o Contexto desta Opinião", discussion_opinion_path(@discussion, opinion), method: :get %></p>
+
+
+      <%= render 'layouts/buttons', opinion: opinion%>
+    </div>
+    </div>
+  <div id="spaceBox-<%=opinion.id%>" class="">
+  </div>
+  <div id="children" class="">
+  </div>
+</div>
+

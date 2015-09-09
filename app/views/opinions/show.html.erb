@@ -1,0 +1,65 @@
+<%= javascript_tag do %>
+
+    // Creating Div of Title
+    div_title = $("<div>", {id: "div-title", class:"container center"});
+
+
+  // Creating Text of title
+  tex_title = $("<h2>", {id: "title-text", class:"blue-text text-lighten-2"});
+
+  //Adding Text of Discussion
+  tex_title.text("<%=@discussion.title%>")
+
+
+  //Append Div of Title on Discussion Div
+  div_title.append(tex_title)
+
+
+  //Append Div of Title on Body
+  $("body").append(div_title)
+
+ // Create a Container
+ container = $("<div>", {class: "container"});
+
+  // Append Container to Body
+  $("body").append(container)
+
+
+  // Create a Box Container
+  box = $("<div>", {class: "box"});
+
+  container.append(box);
+
+  // Create a Main
+  main = $("<div>", {class: "main"});
+
+  box.append(main);
+
+
+
+  // Create a Parent
+  parent = $("<div>", {class: "parent"});
+
+  <% if @opinion.parent_opinion != nil %>
+  parent.append("<%= escape_javascript(render 'layouts/context/parent_context', :opinion => @opinion.parent_opinion, :discussion => @discussion)%>");
+
+  <% end %>
+
+  box.before(parent)
+
+  main.append("<%= escape_javascript(render 'layouts/context/opinion_context', :opinion => @opinion, :discussion => @discussion, :first => true)%>");
+
+
+
+  opinionNode = $("#opinion-<%=@opinion.id%> > #children")
+
+  <% @opinion.children.each do |child| %>
+  opinionNode.append("<%= escape_javascript(render 'layouts/context/opinion_context', :opinion => child, :discussion => @discussion, :first => false)%>");
+  <% end %>
+
+
+  $('.left-bar').each(function() {
+  var h = $(this).parent().height();
+  $(this).height(h);
+  });
+<% end %>

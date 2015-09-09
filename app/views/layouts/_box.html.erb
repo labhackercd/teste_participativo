@@ -1,0 +1,114 @@
+<%= javascript_tag do %>
+
+    document.getElementById('token').value = opinion;
+
+    if (position == 'up')
+    {
+        $("#sms").addClass("light-green lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_agreement")%>");
+    }
+
+    if (position == 'down')
+    {
+        $("#sms").addClass("red lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_disagreement")%>");
+
+    }
+
+    if (position == 'prop')
+    {
+        $("#sms").addClass("amber lighten-4");
+        $(".textarea-sms").attr("placeholder", "<%= I18n.t("discussion.opinion_proposal")%>");
+    }
+
+    seeBoxe();
+
+
+
+    function seeBoxe(){
+    function get_height(elt) {
+    return elt.scrollHeight + parseFloat($(elt).css("borderTopWidth")) + parseFloat($(elt).css("borderBottomWidth"));
+    }
+
+    $("textarea").keyup(function(e) {
+    var found = 0;
+    while (!found) {
+    $(this).height($(this).height() - 10);
+    while($(this).outerHeight() < get_height(this)) {
+    $(this).height($(this).height() + 1);
+    found = 1;
+    };
+    }
+    });
+
+    var oldVal = "";
+    $("textarea").on("change keyup paste", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+    return; //check to prevent multiple simultaneous triggers
+    }
+
+    oldVal = currentVal;
+    //action to be performed on textarea changed
+
+    var sendIcon = $('.send').find('i');
+
+
+    if (!$.trim($("textarea").val())) {
+
+    sendIcon.attr('class', 'mdi-content-clear');
+    <!--sendIcon.parent().attr("href", "/opinions/cancel/");-->
+
+    } else {
+    sendIcon.attr('class', 'mdi-content-send');
+    <!--sendIcon.parent().attr("href", "/opinions/update/"+parent);-->
+
+    }
+    });
+    }
+
+
+    $(".form-icon").click(function(e) {
+
+    e.preventDefault();
+
+    sendIcon = $('.send').find('i');
+
+    if (sendIcon.hasClass("mdi-content-send"))
+    {
+        $( ".submit-form" ).trigger("click");
+    }
+
+
+    if (sendIcon.hasClass("mdi-content-clear"))
+    {
+        $("#sms").remove();
+    }
+
+    });
+
+
+    
+
+<% end %>
+
+<div id="sms" class="send-message">
+  <div class="emoji-key valign-wrapper">
+    <a><i class="fa fa-smile-o"></i></a>
+  </div>
+  <div class="message">
+    <%= form_for stub, :url => discussion_opinion_path(@discussion, stub)  do |f|%>
+        <%= f.hidden_field :id, id: 'token' %>
+        <%= f.text_area :body, rows:1, class:"textarea-sms"  %>
+        <%= f.submit class: "submit-form", hidden:true %>
+    <% end %>
+  </div>
+  <div class="send valign-wrapper">
+    <a class="form-icon" href="">
+      <i class="mdi-content-clear"></i>
+    </a>
+  </div>
+
+
+
+</div>

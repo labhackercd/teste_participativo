@@ -1,0 +1,149 @@
+<div class="position">
+
+  <%
+     position_up = "fa fa-thumbs-o-up strong"
+     position_down = "fa fa-thumbs-o-down strong"
+     position_light = "fa fa-lightbulb-o strong"
+
+     if users_who_interacted(opinion.id).include?(current_user)
+       case (position_by_user(opinion.id, current_user).first)
+         when 'pro'
+           position_up = position_up << " up"
+         when 'against'
+           position_down = position_down << " down"
+         when 'proposal'
+           position_light = position_light << " prop"
+       end
+     end
+  %>
+
+
+  <%= link_to discussion_opinion_participation_path(@discussion.id, opinion.id,  :params => {position: 'up'}), remote: true, class:"btn-up-#{opinion.id}" do %>
+      <i id="up-<%= opinion.id %>" class="<%=position_up%>"><span class="d"> Concordar</span><span class="n"><%= relevancy_numbers(opinion.id, "pro" )%></span></i>
+  <% end %>
+  <%= link_to  discussion_opinion_participation_path(@discussion.id, opinion.id, :params => {position: 'down'}), remote: true, class:"btn-down-#{opinion.id}" do %>
+      <i id="down-<%= opinion.id %>" class="<%=position_down%>"><span class="d"> Discordar</span><span class="n"><%= relevancy_numbers(opinion.id, "against" )%></span></i>
+  <% end %>
+  <% if @discussion.proposal_enabled %>
+      <%= link_to  discussion_opinion_participation_path(@discussion.id, opinion.id, :params => {position: 'prop'}), remote: true, class:"btn-prop-#{opinion.id}" do %>
+          <i id="prop-<%= opinion.id %>" class="<%=position_light%>"><span class="d"> Propor</span><span class="n"><%= relevancy_numbers(opinion.id, "proposal" )%></span></i>
+      <% end %>
+  <% end %>
+</div>
+
+
+<% content_for :js do %>
+
+    $('body').bind('ajax:success',
+    function(event, xhr, status, header){
+    response = JSON.parse(header.getResponseHeader('result'));
+
+
+    controller = response.controller
+
+    if (controller == "participation")
+    {
+    parent = response.parent
+    opinion = response.opinion
+    position = response.position
+    status = response.status
+
+
+
+    var upButton = $("."+"btn-" + "up" + "-"+ parent)
+    var downButton = $("."+"btn-" + "down" + "-"+ parent)
+    var propButton = $("."+"btn-" + "prop" + "-"+ parent)
+
+    // Adding One Boxe
+
+    var sms = $("#sms")
+
+    if (status == 'deleted')
+    {
+
+    if (position == "up")
+    {
+    upButton.find("i").removeClass("up");
+    sms.remove();
+    location.reload();
+    }
+    if (position == "down")
+    {
+    downButton.find("i").removeClass("down");
+    sms.remove();
+    location.reload();
+    }
+    if (position == "prop")
+    {
+    propButton.find("i").removeClass("prop");
+    sms.remove();
+    location.reload();
+    }
+
+    // New Values
+
+    upButton.find(".n").text(response.pro)
+    downButton.find(".n").text(response.against)
+    propButton.find(".n").text(response.proposal)
+
+    }
+
+    if (status == 'impossible to delete')
+    {
+        location.reload();
+    }
+
+    if (status == 'saved')
+    {
+    if (position == "up")
+    {
+    upButton.find("i").addClass("up");
+    downButton.find("i").removeClass("down");
+    propButton.find("i").removeClass("prop");
+    }
+    if (position == "down")
+    {
+    downButton.find("i").addClass("down");
+    upButton.find("i").removeClass("up");
+    propButton.find("i").removeClass("prop");
+    }
+    if (position == "prop")
+    {
+    propButton.find("i").addClass("prop");
+    downButton.find("i").removeClass("down");
+    upButton.find("i").removeClass("up");
+    }
+
+    // New Values
+
+    upButton.find(".n").text(response.pro)
+    downButton.find(".n").text(response.against)
+    propButton.find(".n").text(response.proposal)
+
+
+
+        if ($('#sms') == null)
+        {
+            $("#"+"spaceBox"+"-"+parent).find("#spaceBox").append("<%= escape_javascript(render 'layouts/box')%>");
+        }
+        else
+        {
+            $('#sms').remove();
+
+            $("#"+"spaceBox"+"-"+parent+ "").append("<%= escape_javascript(render 'layouts/box')%>");
+        }
+    }
+
+    }
+
+    if (controller == "cancel")
+    {
+        $('#sms').remove();
+    }
+
+
+  });
+
+
+
+<% end %>
