@@ -26,7 +26,9 @@ $others-opinion: #EFF8FD;
 }
 
 .card {
-  background-color:  #F0F0F0
+  background-color:  #F0F0F0;
+
+
 }
 
 .card .card-title {
@@ -35,8 +37,12 @@ $others-opinion: #EFF8FD;
 }
 
 .card .card-body {
-	font-size: 28px;
+	font-size: 22px;
 }
+.card .card-action {
+  border-top: none;
+}
+
 textarea {
   height: 200px;
 }
