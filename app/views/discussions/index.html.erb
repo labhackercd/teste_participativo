@@ -7,10 +7,11 @@
 <div class="row">
   <% @opinions.take(12).each do |opinion, value|%>
       <div class="col s12 m6 l4">
-        <div class="card grey lighten-2">
+        <div class="card white">
           <div class="card-content black-text flow-text">
             <span class="card-title"><p><%= link_to "#{opinion.discussion.title}",   discussion_path(opinion.discussion, :order_by => 'relevance') %>
             </p></span>
+            <div class="divider"></div>
             <span class="card-body"><p><%= link_to "#{opinion.body}",   discussion_opinion_path(opinion.discussion, opinion) %>
             </p></span>
             </div>
@@ -18,7 +19,7 @@
           <div class="card-action">
             <p><span class="date"><%= opinion.user.name %> em <%=
               distance_of_time_in_words(Time.now, opinion.updated_at) %></span></p>
-             <p><span class="relevancy">Relevância: <%= opinion.absolute_relevancy.round(4) %></span></p>
+             <p><span class="relevancy">Relevância: <%= opinion.absolute_relevancy.round(8) %></span></p>
           </div>
       </div>
       </div>

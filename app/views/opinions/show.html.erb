@@ -53,7 +53,7 @@
 
   opinionNode = $("#opinion-<%=@opinion.id%> > #children")
 
-  <% @opinion.children.each do |child| %>
+  <% @opinion.children.not.where(:body => nil).each do |child| %>
   opinionNode.append("<%= escape_javascript(render 'layouts/context/opinion_context', :opinion => child, :discussion => @discussion, :first => false)%>");
   <% end %>
 
