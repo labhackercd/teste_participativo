@@ -5,7 +5,14 @@ class DiscussionsController < ApplicationController
 
 
   def index
-    @discussion = Discussion.where(:shown => true)
+
+    hash = {}
+    Opinion.all.not.where(:body => nil).each do |opinion|
+      hash[opinion] = opinion.absolute_relevancy()
+    end
+
+    @opinions = hash.sort_by {|_key, value| value}.reverse.to_h
+
   end
   # GET /discussions/1
   def show
